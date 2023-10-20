@@ -1,7 +1,10 @@
 package Controlador;
 
+import Vista.Vista;
+
 public class OnlineStore {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Vista newVista= new Vista();
+        newVista.menu();
     }
 }

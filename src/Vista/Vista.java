@@ -1,13 +1,50 @@
+
 package Vista;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
 public class Vista {
 
-    public Vista(){
-        //Inicializa la clase vista y muestra el menu
-        menu();
+    public void menu() {
+
+             boolean salir = false;
+             char opcion;
+        //Muestra el menu e interactua con el Controlador.
+
+             do{
+                 System.out.println("1. Gestiónar articulo");
+                 System.out.println("2. Gestiónar cliente");
+                 System.out.println("3. Gestión pedido");
+                 System.out.println("0. SALIR");
+
+
+
+             opcion = opcionMenu();
+
+             switch (opcion){
+                 case '1':
+                     break;
+                 case '2':
+                     break;
+                 case '3':
+                     break;
+                 case '0':
+                     salir = true;
+                     break;
+             }
+             }while(!salir);
+
+
     }
 
-    private void menu() {
-        //Muestra el menu e interactua con el Controlador.
+    char opcionMenu(){
+        Scanner entrada  = new Scanner(System.in);
+        System.out.println("Escribe el numero de una de las opciones: ");
+        String respuesta = entrada.nextLine();
+        if (respuesta.isEmpty()) {
+            respuesta = " ";
+        }
+        return respuesta.charAt(0);
     }
 }
