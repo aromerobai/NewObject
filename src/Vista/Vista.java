@@ -10,12 +10,12 @@ public class Vista {
 
              boolean salir = false;
              char opcion;
-        //Muestra el menu e interactua con el Controlador.
 
+        //Muestra el menu e interactua con el Controlador.
              do{
-                 System.out.println("1. Gestiónar articulo");
-                 System.out.println("2. Gestiónar cliente");
-                 System.out.println("3. Gestión pedido");
+                 System.out.println("1. Gestiónar articulos");
+                 System.out.println("2. Gestiónar clientes");
+                 System.out.println("3. Gestionar pedidos");
                  System.out.println("0. SALIR");
 
 
