@@ -10,7 +10,9 @@ public class ListaArticulo {
         //Donde se incializa la clase ListaArticulo.
     }
 
-    public void agregarArticulo(Articulo articulo){}
+    public void agregarArticulo(Articulo articulo){
+        articulos.add(articulo);
+    }
     public  ArrayList<Articulo> getArticulos(){ return articulos;}
 
     @Override

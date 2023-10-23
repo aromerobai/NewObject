@@ -5,14 +5,16 @@ import Vista.Vista;
 
 public class Controlador {
 
-    Vista vista = new Vista();
     Datos datos = new Datos();
 
     public Controlador(){
         //Inicialización del controlador.
     }
 
-    public void agregarArticulo(Articulo articulo){}
+    public void agregarArticulo(Articulo articulo){
+        datos.agregarArticulo(articulo);
+    }
+
     public ListaArticulo mostrarArticulo(){
         //En el futuro devolvera un objeto ListaArticulo
         return null;

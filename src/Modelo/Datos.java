@@ -9,7 +9,9 @@ public class Datos {
         //Inicialización del modelo de datos
     }
 
-    public void agregarArticulo(Articulo articulo){}
+    public void agregarArticulo(Articulo articulo){
+        articulos.agregarArticulo(articulo);
+    }
     public ListaArticulo getArticulo(){return articulos;}
     public void borrarArticulo(String codigo){}
 
