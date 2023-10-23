@@ -1,9 +1,9 @@
 package Modelo;
 
 public class Datos {
-    ListaArticulo articulos;
-    ListaPedido pedidos;
-    ListaCliente clientes;
+    ListaArticulo articulos = new ListaArticulo();
+    ListaPedido pedidos = new ListaPedido();
+    ListaCliente clientes = new ListaCliente();
 
     public Datos(){
         //Inicialización del modelo de datos
@@ -12,7 +12,9 @@ public class Datos {
     public void agregarArticulo(Articulo articulo){
         articulos.agregarArticulo(articulo);
     }
-    public ListaArticulo getArticulo(){return articulos;}
+    public ListaArticulo getArticulo(){
+        return articulos;
+    }
     public void borrarArticulo(String codigo){}
 
     public void agregarPedido(Pedido pedido){}

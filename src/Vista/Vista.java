@@ -39,6 +39,7 @@ public class Vista {
                              agregarArticulo();
                              break;
                          case '2':
+                             mostrarArticulo();
                              break;
                          case '0':
                              volverArticuloMenu = true;
@@ -91,5 +92,20 @@ public class Vista {
         articulo.setPreparacion(Integer.valueOf(prepa.nextLine()));
 
         controlador.agregarArticulo(articulo);
+    }
+
+    private void mostrarArticulo() {
+
+        System.out.println("- Inserta el codigo del articulo");
+        Scanner cod = new Scanner(System.in);
+        String codigo = cod.nextLine();
+
+        Articulo articulo = controlador.mostrarArticulo(codigo);
+        if(articulo != null){
+            String art = articulo.toString();
+            System.out.println(art);
+        }else{
+            System.out.println("Articulo no encontrado");
+        }
     }
 }

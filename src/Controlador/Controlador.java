@@ -3,6 +3,8 @@ package Controlador;
 import Modelo.*;
 import Vista.Vista;
 
+import java.util.ArrayList;
+
 public class Controlador {
 
     Datos datos = new Datos();
@@ -15,8 +17,15 @@ public class Controlador {
         datos.agregarArticulo(articulo);
     }
 
-    public ListaArticulo mostrarArticulo(){
-        //En el futuro devolvera un objeto ListaArticulo
+    public Articulo mostrarArticulo(String codigo){
+        ArrayList<Articulo> arrayArticulos = new ArrayList<Articulo>();
+        ListaArticulo articulos = datos.getArticulo();
+        arrayArticulos = articulos.getArticulos();
+        for (Articulo articulo : arrayArticulos) {
+            if (articulo.getCodigo().equals(codigo)) {
+                return articulo;
+            }
+        }
         return null;
     }
     public void agregarCliente(Cliente cliente){}
