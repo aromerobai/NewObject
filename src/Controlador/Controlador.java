@@ -36,7 +36,6 @@ public class Controlador {
     @Override
     public String toString() {
         return "Controlador{" +
-                "vista=" + vista +
                 ", datos=" + datos +
                 '}';
     }
