@@ -18,8 +18,6 @@ public class Vista {
                  System.out.println("3. Gestión pedido");
                  System.out.println("0. SALIR");
 
-
-
              opcion = opcionMenu();
 
              switch (opcion){
