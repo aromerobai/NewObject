@@ -1,14 +1,19 @@
 package Modelo;
 
 public class Articulo {
-    String codigo;
-    String descripcion;
-    Float precio;
-    Float gastosEnvio;
-    Integer preparacion;
+    private String codigo;
+    private String descripcion;
+    private Float precio;
+    private Float gastosEnvio;
+    private int preparacion;
 
-    public Articulo(){
+    public Articulo(String codigo, String despcripcion, Float precio, Float gastosEnvio, int preparacion){
         //Donde se incializa la clase Articulo.
+        this.codigo = codigo;
+        this.descripcion = despcripcion;
+        this.precio = precio;
+        this.gastosEnvio = gastosEnvio;
+        this.preparacion = preparacion;
     }
 
     public String getCodigo() {

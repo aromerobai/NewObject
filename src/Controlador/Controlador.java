@@ -5,17 +5,26 @@ import Vista.Vista;
 
 public class Controlador {
 
-    Vista vista = new Vista();
     Datos datos = new Datos();
+    Vista vista;
 
     public Controlador(){
         //Inicialización del controlador.
     }
 
-    public void agregarArticulo(Articulo articulo){}
-    public ListaArticulo mostrarArticulo(){
-        //En el futuro devolvera un objeto ListaArticulo
-        return null;
+    public void start(){
+        this.vista = new Vista();
+        vista.menu();
+
+    }
+
+    public void agregarArticulo(Articulo articulo){
+        datos.agregarArticulo(articulo);
+    }
+
+    public String mostrarArticulo(String codigo){
+        String articulo = datos.getArticulo(codigo);
+        return articulo;
     }
     public void agregarCliente(Cliente cliente){}
 
@@ -34,9 +43,11 @@ public class Controlador {
     @Override
     public String toString() {
         return "Controlador{" +
-                "vista=" + vista +
                 ", datos=" + datos +
                 '}';
     }
 
+    public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastos, int preparacion) {
+        datos.agregarArticulo(codigo, descripcion, precio, gastos, preparacion);
+    }
 }
