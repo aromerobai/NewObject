@@ -8,13 +8,22 @@ import java.util.ArrayList;
  * Clase que representa el controlador de una tienda en línea.
  */
 public class Controlador {
-    private Datos datos = new Datos();
+
+    Datos datos = new Datos();
+    Vista vista;
 
     /**
      * Constructor por defecto del controlador.
      */
+
     public Controlador() {
-        // Inicialización del controlador.
+        //Inicialización del controlador.
+    }
+
+    public void start(){
+        this.vista = new Vista();
+        vista.menu();
+
     }
 
     /**
@@ -22,8 +31,8 @@ public class Controlador {
      *
      * @param articulo El artículo a agregar.
      */
-    public void agregarArticulo(Articulo articulo) {
-        datos.agregarArticulo(articulo);
+    public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastos, int preparacion) {
+        datos.agregarArticulo(codigo, descripcion, precio, gastos, preparacion);
     }
 
     /**
@@ -32,16 +41,9 @@ public class Controlador {
      * @param codigo El código del artículo a buscar.
      * @return El artículo encontrado o null si no se encuentra.
      */
-    public Articulo mostrarArticulo(String codigo) {
-        ArrayList<Articulo> arrayArticulos = new ArrayList<Articulo>();
-        ListaArticulo articulos = datos.getArticulo();
-        arrayArticulos = articulos.getArticulos();
-        for (Articulo articulo : arrayArticulos) {
-            if (articulo.getCodigo().equals(codigo)) {
-                return articulo;
-            }
-        }
-        return null;
+    public String mostrarArticulo(String codigo){
+        String articulo = datos.getArticulo(codigo);
+        return articulo;
     }
 
     /**
@@ -49,24 +51,15 @@ public class Controlador {
      *
      * @param cliente El cliente a agregar.
      */
-    public void agregarCliente(Cliente cliente) {
-        datos.agregarCliente(cliente);
-    }
+    public void agregarCliente(Cliente cliente){}
 
     /**
      * Muestra la lista de clientes (actualmente no implementado).
      *
      * @return Una instancia de ListaCliente que contendría la lista de clientes.
      */
-    public Cliente mostrarCliente(String nif) {
-        ArrayList<Cliente> arrayClientes = new ArrayList<Cliente>();
-        ListaCliente clientes = datos.getCliente();
-        arrayClientes = clientes.getClientes();
-        for (Cliente cliente : arrayClientes) {
-            if (cliente.getNif().equals(nif)) {
-                return cliente;
-            }
-        }
+    public ListaCliente mostrarCliente(){
+        //En el futuro devolvera un objeto ListaCliente
         return null;
     }
 
@@ -75,9 +68,7 @@ public class Controlador {
      *
      * @param pedido El pedido a agregar.
      */
-    public void agregarPedido(Pedido pedido) {
-        // Implementación del método para agregar pedidos en el futuro.
-    }
+    public void agregarPedido(Pedido pedido){}
 
     /**
      * Muestra la lista de pedidos basada en el NIF del cliente y el estado del pedido (actualmente no implementado).
@@ -86,23 +77,25 @@ public class Controlador {
      * @param estadoPedido  El estado del pedido.
      * @return Una instancia de ListaPedido que contendría la lista de pedidos.
      */
-    public ListaPedido mostrarPedido(String nif, EstadoPedido estadoPedido) {
-        // En el futuro devolverá un objeto ListaPedido.
+    public ListaPedido mostrarPedido(String nif,EstadoPedido estadoPedido){
+        //En el futuro devolvera un objeto ListaPedido
         return null;
     }
+
 
     /**
      * Borra un pedido basado en su ID.
      *
      * @param id El ID del pedido a borrar.
      */
-    public void borrarPedido(Integer id) {
-        // Implementación del método para borrar pedidos en el futuro.
-    }
+    public void borrarPedido(Integer id){}
 
     @Override
     public String toString() {
         return "Controlador{" +
-                "datos=" + datos + '}';
+                ", datos=" + datos +
+                '}';
     }
+
+
 }

@@ -1,7 +1,7 @@
+
 package Vista;
 
 import Controlador.Controlador;
-import Modelo.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,69 +11,39 @@ import java.util.Scanner;
  */
 public class Vista {
     Controlador controlador = new Controlador();
+    Scanner input = new Scanner(System.in);
+
+    public Vista() {}
 
     /**
      * Método principal que muestra el menú y permite interactuar con el Controlador.
      */
     public void menu() {
+
         boolean salir = false;
         char opcion;
 
-        do {
-            System.out.println("1. Gestionar artículo");
-            System.out.println("2. Gestionar cliente");
-            System.out.println("3. Gestionar pedido");
+        do{
+            System.out.println("1. Gestiónar artículo");
+            System.out.println("2. Gestiónar cliente");
+            System.out.println("3. Gestión pedido");
             System.out.println("0. SALIR");
 
             opcion = opcionMenu();
-            boolean volverArticuloMenu = false;
 
-            switch (opcion) {
-                case '1':
-                    do {
-                        System.out.println("1. Añadir artículo");
-                        System.out.println("2. Mostrar artículo");
-                        System.out.println("0. Volver al menú");
-                        opcion = opcionMenu();
-                        switch (opcion) {
-                            case '1':
-                                agregarArticulo();
-                                break;
-                            case '2':
-                                mostrarArticulo();
-                                break;
-                            case '0':
-                                volverArticuloMenu = true;
-                                break;
-                        }
-                    } while (!volverArticuloMenu);
-                    break;
-                case '2':
-                    do {
-                        System.out.println("1. Añadir Cliente");
-                        System.out.println("2. Mostrar cliente");
-                        System.out.println("0. Volver al menú");
-                        opcion = opcionMenu();
-                        switch (opcion) {
-                            case '1':
-                                agregarCliente();
-                                break;
-                            case '2':
-                                mostrarCliente();
-                                break;
-                            case '0':
-                                volverArticuloMenu = true;
-                                break;
-                        }
-                    } while (!volverArticuloMenu);
-                    break;
-                case '3':
-                    break;
-                case '0':
-                    salir = true;
-                    break;
+            switch (opcion){
+             case '1':
+                 menuArticulo();
+                 break;
+             case '2':
+                 break;
+             case '3':
+                 break;
+             case '0':
+                 salir = true;
+                 break;
             }
-        } while (!salir);
+         }while(!salir);
     }
 
     /**
@@ -91,57 +61,67 @@ public class Vista {
         return respuesta.charAt(0);
     }
 
-    /**
-     * Agrega un artículo al sistema.
-     */
-    private void agregarArticulo() {
-        Articulo articulo = new Articulo();
-
-        System.out.println("- Inserta el código");
-        Scanner cod = new Scanner(System.in);
-        articulo.setCodigo(cod.nextLine());
-
-        System.out.println("- Inserta la descripción");
-        Scanner des = new Scanner(System.in);
-        articulo.setDescripcion(des.nextLine());
-
-        System.out.println("- Inserta el precio");
-        Scanner pre = new Scanner(System.in);
-        articulo.setPrecio(Float.valueOf(pre.nextLine()));
-
-        System.out.println("- Inserta los gastos de envío");
-        Scanner gas = new Scanner(System.in);
-        articulo.setGastosEnvio(Float.valueOf(gas.nextLine()));
-
-        System.out.println("- Inserta tiempo de preparación");
-        Scanner prepa = new Scanner(System.in);
-        articulo.setPreparacion(Integer.valueOf(prepa.nextLine()));
-
-        controlador.agregarArticulo(articulo);
+    private void menuArticulo(){
+        char opcion;
+        boolean volver = false;
+        do {
+            System.out.println("MENU DE GESTION DE ARTICULOS \n");
+            System.out.println("1. Añadir artículo");
+            System.out.println("2. Mostrar artículo");
+            System.out.println("0. Volver al menu");
+            opcion = opcionMenu();
+            switch (opcion) {
+                case '1':
+                    leerInfoArticulo();
+                    break;
+                case '2':
+                    mostrarArticulo();
+                    break;
+                case '0':
+                    volver = true;
+                    break;
+            }
+        }while (!volver);
     }
 
-    /**
-     * Muestra un artículo en base a su código.
-     */
+    private void leerInfoArticulo() {
+        System.out.println("- Inserta el codigo");
+        String codigo = input.nextLine();
+
+        System.out.println("- Inserta la descripcion");
+        String descripcion = input.nextLine();
+
+        System.out.println("- Inserta el precio");
+        Float precio = Float.valueOf(input.nextLine());
+
+        System.out.println("- Inserta los gastos de envio");
+        Float gastos = Float.valueOf(input.nextLine());
+
+        System.out.println("- Inserta tiempo de preparacion");
+        int preparacion = Integer.valueOf(input.nextLine());
+
+        controlador.agregarArticulo(codigo, descripcion, precio, gastos, preparacion);
+    }
+
     private void mostrarArticulo() {
-        System.out.println("- Inserta el código del artículo");
-        Scanner cod = new Scanner(System.in);
-        String codigo = cod.nextLine();
 
-        Articulo articulo = controlador.mostrarArticulo(codigo);
+        System.out.println("- Inserta el codigo del articulo");
+        String codigo = input.nextLine();
 
-        if (articulo != null) {
+        String articulo = controlador.mostrarArticulo(codigo);
+
+        if(articulo != null){
             String art = articulo.toString();
             System.out.println(art);
-        } else {
-            System.out.println("Artículo no encontrado");
+        }else{
+            System.out.println("Articulo no encontrado");
         }
     }
 
     /**
      * Agrega un cliente al sistema.
      */
-    private void agregarCliente() {
+    /*private void agregarCliente() {
         Cliente cliente = null;
 
         System.out.println("- Inserta el nombre (Nombre y apellidos)");
@@ -184,11 +164,12 @@ public class Vista {
         }
         controlador.agregarCliente(cliente);
     }
+*/
 
     /**
      * Muestra un cliente en base a su nif.
      */
-    private void mostrarCliente() {
+/*    private void mostrarCliente() {
         System.out.println("- Inserta el NIF del cliente ");
         Scanner nf = new Scanner(System.in);
         String nif = nf.nextLine();
@@ -204,3 +185,4 @@ public class Vista {
     }
 
 }
+*/

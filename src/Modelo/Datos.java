@@ -18,8 +18,8 @@ public class Datos {
      *
      * @param articulo El artículo a agregar.
      */
-    public void agregarArticulo(Articulo articulo) {
-        articulos.agregarArticulo(articulo);
+    public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastos, int preparacion) {
+        articulos.agregarArticulo(codigo, descripcion, precio, gastos, preparacion);
     }
 
     /**
@@ -27,8 +27,10 @@ public class Datos {
      *
      * @return La lista de artículos.
      */
-    public ListaArticulo getArticulo() {
-        return articulos;
+    public String getArticulo(String codigo){
+        String articulo = articulos.getArticulo(codigo);
+        return articulo;
+
     }
 
     /**
@@ -84,6 +86,7 @@ public class Datos {
     public void borrarPedido(Integer id) {
         // Implementación del método para borrar pedidos en el futuro.
     }
+
 
     @Override
     public String toString() {

@@ -14,7 +14,7 @@ public class ListaArticulo {
      * Donde se inicializa la clase ListaArticulo.
      */
     public ListaArticulo(){
-        // Inicialización de la lista de artículos.
+        //Donde se incializa la clase ListaArticulo.
     }
 
     /**
@@ -22,8 +22,9 @@ public class ListaArticulo {
      *
      * @param articulo El artículo a agregar a la lista.
      */
-    public void agregarArticulo(Articulo articulo){
-        articulos.add(articulo);
+    public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastos, int preparacion) {
+        Articulo newArticulo = new Articulo(codigo, descripcion, precio, gastos, preparacion);
+        articulos.add(newArticulo);
     }
 
     /**
@@ -31,8 +32,14 @@ public class ListaArticulo {
      *
      * @return La lista de artículos.
      */
-    public ArrayList<Articulo> getArticulos(){
-        return articulos;
+    public String getArticulo(String codigo) {
+        String nombreArticulo = null;
+        for (Articulo articulo : articulos) {
+            if (articulo.getCodigo().equals(codigo)) {
+                nombreArticulo = articulo.toString();
+            }
+        }
+        return nombreArticulo;
     }
 
     /**
