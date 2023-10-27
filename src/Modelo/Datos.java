@@ -4,14 +4,18 @@ package Modelo;
  * Clase que representa el modelo de datos de una tienda en línea.
  */
 public class Datos {
-    ListaArticulo articulos = new ListaArticulo();
-    ListaPedido pedidos = new ListaPedido();
-    ListaCliente clientes = new ListaCliente();
+    private ListaArticulo articulos;
+    private ListaPedido pedidos;
+    private ListaCliente clientes;
 
     /**
      * Constructor por defecto de Datos.
      */
-    public Datos() {}
+    public Datos() {
+        this.articulos = new ListaArticulo();
+        this.pedidos = new ListaPedido();
+        this.clientes = new ListaCliente();
+    }
 
     /**
      * Agrega un artículo al modelo de datos.
@@ -35,15 +39,6 @@ public class Datos {
         String articulo = articulos.getArticulo(codigo);
         return articulo;
     }
-
-    /**
-     * (POSIBLE IMPLANTACIÓN) Borra un artículo del modelo de datos basado en su código.
-     *
-     * @param codigo El código del artículo a borrar.
-     */
-    /*public void borrarArticulo(String codigo) {
-        // Implementación del método para borrar artículos en el futuro.
-    }*/
 
     /**
      * Agrega un cliente al modelo de datos.
@@ -105,4 +100,32 @@ public class Datos {
                 ", clientes=" + clientes +
                 '}';
     }
+
+
+    /**
+     * Comprueba si existe un artículo en la lista de artículos a través de su código.
+     *
+     * @param codigo El código del artículo a verificar.
+     * @return true si el artículo con el código dado existe en la lista, false en caso contrario.
+     */
+    public boolean existeArticulo(String codigo) {
+        return articulos.compruebaExistenciaArticulo(codigo);
+    }
+
+    /**
+     * Comprueba si existe un cliente en la lista de clientes a través de su NIF.
+     *
+     * @param nif El NIF del cliente a verificar.
+     * @return true si el cliente con el NIF dado existe en la lista, false en caso contrario.
+     */
+    public boolean existeCliente(String nif) {
+        return clientes.compruebaExistenciaCliente(nif);
+    }
+/*
+    public boolean existenPedido(int num) {
+        return pedidos.compruebaExistencia(num);
+    }
+*/
+
+
 }

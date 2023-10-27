@@ -1,5 +1,6 @@
 package Modelo;
 
+import NewObject.Excepciones.*;
 import java.util.ArrayList;
 
 /**
@@ -7,13 +8,15 @@ import java.util.ArrayList;
  */
 public class ListaArticulo extends Lista{
 
-    ArrayList<Articulo> articulos = new ArrayList<Articulo>();
+    private ArrayList<Articulo> articulos ;
 
     /**
      * Constructor por defecto de ListaArticulo.
      * Donde se inicializa la clase ListaArticulo.
      */
-    public ListaArticulo(){}
+    public ListaArticulo(){
+        this.articulos = new ArrayList<Articulo>();
+    }
 
     /**
      * Agrega un artículo a la lista de artículos disponibles en el sistema.
@@ -51,8 +54,24 @@ public class ListaArticulo extends Lista{
      */
     @Override
     public String toString() {
-        return "ListaArticulo{" +
+        return "ListaArticulo{ " +
                 "articulos= " + articulos +
                 " }";
     }
+
+    /**
+     * Comprueba si existe un artículo en la lista de artículos a través de su código.
+     *
+     * @param codigo El código del artículo a verificar.
+     * @return true si el artículo con el código dado existe en la lista, false en caso contrario.
+     */
+    public boolean compruebaExistenciaArticulo(String codigo) {
+        for (Articulo articulo : articulos) {
+            if (articulo.getCodigo().equals(codigo)) {
+                return true; // El artículo ya existe en la lista
+            }
+        }
+        return false; // El artículo no existe en la lista
+    }
+
 }

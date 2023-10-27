@@ -6,12 +6,12 @@ import java.time.LocalDateTime;
  * La clase Pedido representa un pedido de un cliente en una tienda en línea.
  */
 public class Pedido {
-    Integer id;
-    Cliente cliente;
-    Articulo articulo;
-    Integer cantidad;
-    LocalDateTime fecha;
-    EstadoPedido estado;
+    private int id;
+    private Cliente cliente;
+    private Articulo articulo;
+    private int cantidad;
+    private LocalDateTime fecha;
+    private EstadoPedido estado;
 
     /**
      * Constructor por defecto de Pedido.
@@ -161,7 +161,7 @@ public class Pedido {
                 ", articulo= " + articulo +
                 ", cantidad= " + cantidad +
                 ", fecha= " + fecha +
-                ", estado="  + estado +
-                " }";
+                ", estado= "  + estado +
+                " }\n" + "======================================================================================================================\n";
     }
 }

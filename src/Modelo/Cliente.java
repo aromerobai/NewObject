@@ -125,6 +125,21 @@ public  abstract class Cliente {
     }
 
     /**
+     * Devuelve el tipo de cliente.
+     */
+    public abstract String tipoCliente();
+
+    /**
+     * Calcula la cuota anual.
+     */
+    public abstract float calcAnual();
+
+    /**
+     * Calcula el descuento de gastos de envío.
+     */
+    public abstract float descuentoEnv();
+
+    /**
      * Retorna una representación en forma de cadena del cliente.
      *
      * @return Una cadena que representa al cliente.
@@ -135,7 +150,6 @@ public  abstract class Cliente {
                 "nombre= " + nombre +
                 ", domicilio= " + domicilio +
                 ", nif= " + nif +
-                ", email= " + email +
-                ", tipo= " + tipo ;
+                ", email= " + email ;
     }
 }

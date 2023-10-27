@@ -138,6 +138,6 @@ public class Articulo {
                 ", precio= " + precio + " €" +
                 ", gastos de envío= " + gastosEnvio + " €" +
                 ", tiempo de preparación= " + preparacion + " horas" +
-                " }";
+                " }\n" + "======================================================================================================================\n";
     }
 }

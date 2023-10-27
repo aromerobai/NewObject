@@ -1,5 +1,6 @@
 package Controlador;
 
+import NewObject.Excepciones.ElementoExistente;
 import Vista.Vista;
 
 /**
@@ -22,7 +23,7 @@ public class OnlineStore {
     /**
      * Inicia Online store a través del controlador.
      */
-    void iniciar() {
+    void iniciar()  {
         controlador.start();
     }
 }

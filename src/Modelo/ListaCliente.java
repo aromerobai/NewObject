@@ -31,10 +31,15 @@ public class ListaCliente extends Lista{
 
         if (tipo == TipoCliente.PREMIUM) {
             newCliente = new Premium(nombre, domicilio, nif, email, tipo, descuento, cuota);
-        } else {
+        } else if (tipo == TipoCliente.ESTANDAR) {
             newCliente = new Estandar(nombre, domicilio, nif, email, tipo, descuento);
+        }else{
+            // Excepción
+            newCliente = null;
         }
+        if (newCliente != null){
         clientes.add(newCliente);
+        }
     }
 
     /**
@@ -63,4 +68,20 @@ public class ListaCliente extends Lista{
                 "clientes= " + clientes +
                 " }";
     }
+
+    /**
+     * Comprueba si existe un cliente en la lista de clientes a través de su NIF.
+     *
+     * @param nif El NIF del cliente a verificar.
+     * @return true si el cliente con el NIF dado existe en la lista, false en caso contrario.
+     */
+    public boolean compruebaExistenciaCliente(String nif) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getNif().equals(nif)) {
+                return true; // El cliente ya existe en la lista
+            }
+        }
+        return false; // El cliente no existe en la lista
+    }
+
 }

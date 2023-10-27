@@ -66,6 +66,28 @@ public class Premium extends Cliente {
     }
 
     /**
+     * Devuelve el tipo de cliente.
+     */
+    public String tipoCliente() {
+        return "Premium";
+    }
+
+    /**
+     * Calcula la cuota anual.
+     */
+    public float calcAnual() {
+        Float cuotaAn = cuota * 12;
+        return cuotaAn;
+    }
+
+    /**
+     * Calcula el descuento de gastos de envío.
+     */
+    public float descuentoEnv() {
+        return descuento;
+    }
+
+    /**
      * Retorna una representación en forma de cadena del cliente Premium.
      *
      * @return Una cadena que representa al cliente Premium.
@@ -73,7 +95,8 @@ public class Premium extends Cliente {
     @Override
     public String toString() {
         return super.toString() +
-                ", descuento=" + descuento +
-                ", cuota=" + cuota + "€/mes }" ;
+                ", tipo= " + tipoCliente() +
+                ", descuento= " + descuentoEnv() +
+                ", cuota=" + calcAnual() + "€/año }\n" + "======================================================================================================================\n";
     }
 }

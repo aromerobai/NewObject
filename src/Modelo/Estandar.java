@@ -1,4 +1,5 @@
 package Modelo;
+
 /**
  * Clase que representa un cliente de tipo Estandar.
  */
@@ -44,6 +45,27 @@ public class Estandar extends Cliente {
     }
 
     /**
+     * Devuelve el tipo de cliente.
+     */
+    public String tipoCliente() {
+        return "Estándar";
+    }
+
+    /**
+     * Calcula la cuota anual.
+     */
+    public float calcAnual() {
+        return 0;
+    }
+
+    /**
+     * Calcula el descuento de gastos de envío.
+     */
+    public float descuentoEnv() {
+        return 0;
+    }
+
+    /**
      * Retorna una representación en forma de cadena del cliente Estandar.
      *
      * @return Una cadena que representa al cliente Estandar.
@@ -51,6 +73,7 @@ public class Estandar extends Cliente {
     @Override
     public String toString() {
         return super.toString() +
-                ", descuento=" + descuento + " }";
+                ", tipo= " + tipoCliente() +
+                ", descuento=" + descuentoEnv() + " }\n" + "======================================================================================================================\n";
     }
 }

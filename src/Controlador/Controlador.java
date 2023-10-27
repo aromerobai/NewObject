@@ -2,26 +2,27 @@ package Controlador;
 
 import Modelo.*;
 import Vista.Vista;
+import NewObject.Excepciones.*;
 import java.util.ArrayList;
 
 /**
  * Clase que representa el controlador de una tienda en línea.
  */
 public class Controlador {
-    Datos datos = new Datos();
-    Vista vista;
+    private Datos datos;
+    private Vista vista;
 
     /**
      * Constructor por defecto del controlador. Inicializa el controlador.
      */
     public Controlador() {
-        //Inicialización del controlador.
+        this.datos = new Datos();
     }
 
     /**
      * Inicia la aplicación creando una instancia de la Vista y mostrando el menú principal.
      */
-    public void start(){
+    public void start() {
         this.vista = new Vista();
         vista.menu();
     }
@@ -62,7 +63,6 @@ public class Controlador {
      * @param cuota     La cuota mensual (solo para clientes PREMIUM).
      */
     public void agregarCliente(String nombre, String domicilio, String nif, String email, TipoCliente tipo, Float descuento, Float cuota) {
-        Cliente nuevoCliente;
         if (tipo == TipoCliente.PREMIUM) {
             datos.agregarCliente(nombre, domicilio, nif, email, tipo, descuento, cuota);
         } else {
@@ -106,10 +106,38 @@ public class Controlador {
      */
     public void borrarPedido(Integer id){}
 
+    /**
+     * Devuelve una representación en forma de cadena de la instancia de Controlador.
+     *
+     * @return Una cadena que representa la instancia de Controlador.
+     */
     @Override
     public String toString() {
         return "Controlador{" +
                 ", datos= " + datos +
                 " }";
     }
+
+    /**
+     * Comprueba si existe un artículo en el modelo de datos a través de su código.
+     *
+     * @param codigo El código del artículo a verificar.
+     * @return true si el artículo con el código dado existe en el modelo de datos, false en caso contrario.
+     */
+    public boolean articuloExiste(String codigo) {
+        return datos.existeArticulo(codigo);
+    }
+
+    /**
+     * Comprueba si existe un cliente en el modelo de datos a través de su NIF.
+     *
+     * @param nif El NIF del cliente a verificar.
+     * @return true si el cliente con el NIF dado existe en el modelo de datos, false en caso contrario.
+     */
+    public boolean clienteExiste(String nif) {
+        return datos.existeCliente(nif);
+    }
+
 }
+
+
