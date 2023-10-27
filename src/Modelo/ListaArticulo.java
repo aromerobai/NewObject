@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * La clase ListaArticulo representa una lista de artículos en una tienda en línea.
  */
-public class ListaArticulo {
+public class ListaArticulo extends Lista{
 
     ArrayList<Articulo> articulos = new ArrayList<Articulo>();
 
@@ -13,14 +13,16 @@ public class ListaArticulo {
      * Constructor por defecto de ListaArticulo.
      * Donde se inicializa la clase ListaArticulo.
      */
-    public ListaArticulo(){
-        //Donde se incializa la clase ListaArticulo.
-    }
+    public ListaArticulo(){}
 
     /**
-     * Agrega un artículo a la lista.
+     * Agrega un artículo a la lista de artículos disponibles en el sistema.
      *
-     * @param articulo El artículo a agregar a la lista.
+     * @param codigo       El código único del artículo.
+     * @param descripcion  La descripción del artículo.
+     * @param precio       El precio del artículo.
+     * @param gastos       Los gastos asociados al artículo.
+     * @param preparacion  El tiempo de preparación del artículo en minutos.
      */
     public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastos, int preparacion) {
         Articulo newArticulo = new Articulo(codigo, descripcion, precio, gastos, preparacion);
@@ -50,7 +52,7 @@ public class ListaArticulo {
     @Override
     public String toString() {
         return "ListaArticulo{" +
-                "articulos=" + articulos +
-                '}';
+                "articulos= " + articulos +
+                " }";
     }
 }

@@ -156,12 +156,12 @@ public class Pedido {
     @Override
     public String toString() {
         return "Pedido{" +
-                "id=" + id +
-                ", cliente=" + cliente +
-                ", articulo=" + articulo +
-                ", cantidad=" + cantidad +
-                ", fecha=" + fecha +
-                ", estado=" + estado +
-                '}';
+                "id= " + id +
+                ", cliente= " + cliente +
+                ", articulo= " + articulo +
+                ", cantidad= " + cantidad +
+                ", fecha= " + fecha +
+                ", estado="  + estado +
+                " }";
     }
 }

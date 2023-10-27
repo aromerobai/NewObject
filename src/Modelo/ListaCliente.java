@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * La clase ListaCliente representa una lista de clientes en una tienda en línea.
  */
-public class ListaCliente {
+public class ListaCliente extends Lista{
 
     ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
@@ -13,17 +13,28 @@ public class ListaCliente {
      * Constructor por defecto de ListaCliente.
      * Donde se inicializa la clase ListaCliente.
      */
-    public ListaCliente() {
-        // Inicialización de la lista de clientes.
-    }
+    public ListaCliente() {}
 
     /**
-     * Agrega un cliente a la lista.
+     * Agrega un cliente al sistema.
      *
-     * @param cliente El cliente a agregar a la lista.
+     * @param nombre    El nombre del cliente.
+     * @param domicilio La dirección del cliente.
+     * @param nif       El NIF del cliente.
+     * @param email     El correo electrónico del cliente.
+     * @param tipo      El tipo de cliente (PREMIUM o ESTANDAR).
+     * @param descuento El descuento aplicable al cliente (solo para clientes PREMIUM).
+     * @param cuota     La cuota mensual (solo para clientes PREMIUM).
      */
-    public void agregarCliente(Cliente cliente){
-        clientes.add(cliente);
+    public void agregarCliente(String nombre, String domicilio, String nif, String email, TipoCliente tipo, Float descuento, Float cuota) {
+        Cliente newCliente;
+
+        if (tipo == TipoCliente.PREMIUM) {
+            newCliente = new Premium(nombre, domicilio, nif, email, tipo, descuento, cuota);
+        } else {
+            newCliente = new Estandar(nombre, domicilio, nif, email, tipo, descuento);
+        }
+        clientes.add(newCliente);
     }
 
     /**
@@ -31,8 +42,14 @@ public class ListaCliente {
      *
      * @return La lista de clientes.
      */
-    public ArrayList<Cliente> getClientes() {
-        return clientes;
+    public String getCliente(String nif) {
+        String clienteInfo = null;
+        for (Cliente cliente : clientes) {
+            if (cliente.getNif().equals(nif)) {
+                clienteInfo = cliente.toString();
+            }
+        }
+        return clienteInfo;
     }
 
     /**
@@ -43,7 +60,7 @@ public class ListaCliente {
     @Override
     public String toString() {
         return "ListaCliente{" +
-                "clientes=" + clientes +
-                '}';
+                "clientes= " + clientes +
+                " }";
     }
 }

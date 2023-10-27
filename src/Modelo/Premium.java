@@ -4,7 +4,6 @@ package Modelo;
  * Clase que representa un cliente de tipo Premium.
  */
 public class Premium extends Cliente {
-
     private Float descuento;
     private Float cuota;
 
@@ -74,7 +73,7 @@ public class Premium extends Cliente {
     @Override
     public String toString() {
         return super.toString() +
-                "descuento=" + descuento +
-                ", cuota=" + cuota + '}';
+                ", descuento=" + descuento +
+                ", cuota=" + cuota + "€/mes }" ;
     }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * La clase ListaPedido representa una lista de pedidos en una tienda en línea.
  */
-public class ListaPedido {
+public class ListaPedido extends Lista{
 
     ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 
@@ -52,7 +52,7 @@ public class ListaPedido {
     @Override
     public String toString() {
         return "ListaPedido{" +
-                "pedidos=" + pedidos +
-                '}';
+                "pedidos= " + pedidos +
+                " }";
     }
 }

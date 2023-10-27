@@ -3,22 +3,26 @@ package Controlador;
 import Vista.Vista;
 
 /**
- * Clase principal que inicia una tienda en línea.
+ * Clase principal que inicia online store
  */
 public class OnlineStore {
     /**
      * Punto de entrada principal de la aplicación.
-     *
-     * @param args Argumentos de línea de comandos.
      */
-    Controlador controlador= new Controlador();
+    Controlador controlador = new Controlador();
 
+    /**
+     * Método de inicio de la aplicación que crea una instancia de Online store y la inicia.
+     */
     public static void main(String[] args) {
         OnlineStore onlineStore = new OnlineStore();
         onlineStore.iniciar();
-
     }
-    void iniciar(){
+
+    /**
+     * Inicia Online store a través del controlador.
+     */
+    void iniciar() {
         controlador.start();
     }
 }

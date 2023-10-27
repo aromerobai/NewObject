@@ -50,6 +50,7 @@ public class Estandar extends Cliente {
      */
     @Override
     public String toString() {
-        return super.toString() + "descuento=" + descuento + '}';
+        return super.toString() +
+                ", descuento=" + descuento + " }";
     }
 }

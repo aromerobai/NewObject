@@ -8,28 +8,32 @@ import java.util.ArrayList;
  * Clase que representa el controlador de una tienda en línea.
  */
 public class Controlador {
-
     Datos datos = new Datos();
     Vista vista;
 
     /**
-     * Constructor por defecto del controlador.
+     * Constructor por defecto del controlador. Inicializa el controlador.
      */
-
     public Controlador() {
         //Inicialización del controlador.
     }
 
+    /**
+     * Inicia la aplicación creando una instancia de la Vista y mostrando el menú principal.
+     */
     public void start(){
         this.vista = new Vista();
         vista.menu();
-
     }
 
     /**
      * Agrega un artículo al sistema.
      *
-     * @param articulo El artículo a agregar.
+     * @param codigo       El código del artículo.
+     * @param descripcion  La descripción del artículo.
+     * @param precio       El precio del artículo.
+     * @param gastos       Los gastos asociados al artículo.
+     * @param preparacion  El tiempo de preparación del artículo en minutos.
      */
     public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastos, int preparacion) {
         datos.agregarArticulo(codigo, descripcion, precio, gastos, preparacion);
@@ -49,18 +53,31 @@ public class Controlador {
     /**
      * Agrega un cliente al sistema.
      *
-     * @param cliente El cliente a agregar.
+     * @param nombre    El nombre del cliente.
+     * @param domicilio La dirección del cliente.
+     * @param nif       El NIF del cliente.
+     * @param email     El correo electrónico del cliente.
+     * @param tipo      El tipo de cliente (PREMIUM o ESTANDAR).
+     * @param descuento El descuento aplicable al cliente (solo para clientes PREMIUM).
+     * @param cuota     La cuota mensual (solo para clientes PREMIUM).
      */
-    public void agregarCliente(Cliente cliente){}
+    public void agregarCliente(String nombre, String domicilio, String nif, String email, TipoCliente tipo, Float descuento, Float cuota) {
+        Cliente nuevoCliente;
+        if (tipo == TipoCliente.PREMIUM) {
+            datos.agregarCliente(nombre, domicilio, nif, email, tipo, descuento, cuota);
+        } else {
+            datos.agregarCliente(nombre, domicilio, nif, email, tipo, descuento, cuota);
+        }
+    }
 
     /**
      * Muestra la lista de clientes (actualmente no implementado).
      *
      * @return Una instancia de ListaCliente que contendría la lista de clientes.
      */
-    public ListaCliente mostrarCliente(){
-        //En el futuro devolvera un objeto ListaCliente
-        return null;
+    public String mostrarCliente(String nif){
+        String cliente = datos.getCliente(nif);
+        return cliente;
     }
 
     /**
@@ -82,7 +99,6 @@ public class Controlador {
         return null;
     }
 
-
     /**
      * Borra un pedido basado en su ID.
      *
@@ -93,9 +109,7 @@ public class Controlador {
     @Override
     public String toString() {
         return "Controlador{" +
-                ", datos=" + datos +
-                '}';
+                ", datos= " + datos +
+                " }";
     }
-
-
 }
