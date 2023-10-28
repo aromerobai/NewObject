@@ -198,6 +198,7 @@ public class Vista {
                 Float descuento = Float.valueOf(input.nextLine());
 
                 controlador.agregarCliente(nombre, domicilio, nif, email, tipo, descuento, null);
+
             } else if (tipoStr.equals("PREMIUM")) {
                 tipo = TipoCliente.PREMIUM;
 
@@ -208,6 +209,7 @@ public class Vista {
                 Float cuota = Float.valueOf(input.nextLine());
 
                 controlador.agregarCliente(nombre, domicilio, nif, email, tipo, desc, cuota);
+
             } else {
                 System.out.println("Tipo de cliente no válido.");
             }
