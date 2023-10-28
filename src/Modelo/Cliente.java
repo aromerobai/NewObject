@@ -4,7 +4,6 @@ package Modelo;
  * Clase que representa un cliente.
  */
 public  abstract class Cliente {
-
     private String nombre;
     private String domicilio;
     private String nif;

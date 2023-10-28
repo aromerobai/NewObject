@@ -7,14 +7,14 @@ import java.util.ArrayList;
  */
 public class ListaPedido extends Lista{
 
-    ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+    private ArrayList<Pedido> pedidos;
 
     /**
      * Constructor por defecto de ListaPedido.
      * Donde se inicializa la clase ListaPedido.
      */
     public ListaPedido(){
-        // Inicialización de la lista de pedidos.
+        this.pedidos = new ArrayList<Pedido>();
     }
 
     /**

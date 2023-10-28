@@ -7,13 +7,15 @@ import java.util.ArrayList;
  */
 public class ListaCliente extends Lista{
 
-    ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    private ArrayList<Cliente> clientes;
 
     /**
      * Constructor por defecto de ListaCliente.
      * Donde se inicializa la clase ListaCliente.
      */
-    public ListaCliente() {}
+    public ListaCliente() {
+        this.clientes =new ArrayList<Cliente>();
+    }
 
     /**
      * Agrega un cliente al sistema.

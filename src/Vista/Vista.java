@@ -25,12 +25,13 @@ public class Vista {
      * Método principal que muestra el menú y permite interactuar con el Controlador.
      */
     public void menu() {
-
         boolean salir = false;
         char opcion;
 
         do {
-            System.out.println("****INICIO****");
+            System.out.println("**************");
+            System.out.println("*   INICIO   *");
+            System.out.println("**************\n");
             System.out.println("1. Gestiónar artículo");
             System.out.println("2. Gestiónar cliente");
             System.out.println("3. Gestión pedido");
@@ -38,16 +39,24 @@ public class Vista {
 
             opcion = opcionMenu();
 
-            switch (opcion) {
-                case '1':
-                    menuArticulo();
-                case '2':
-                    menuCliente();
-                case '3':
-                    break;
-                case '0':
-                    salir = true;
-                    break;
+            try {
+                switch (opcion) {
+                    case '1':
+                        menuArticulo();
+                        break;
+                    case '2':
+                        menuCliente();
+                        break;
+                    case '3':
+                        break;
+                    case '0':
+                        salir = true;
+                        break;
+                    default:
+                        throw new OpcionInvalida();
+                }
+            } catch (OpcionInvalida e) {
+                System.out.println("Error: " + e.getMessage());
             }
         } while (!salir);
     }
@@ -59,7 +68,7 @@ public class Vista {
      */
     char opcionMenu() {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("Escribe el número de una de las opciones: ");
+        System.out.println("Seleccione una de las siguientes opciones: ");
         String respuesta = entrada.nextLine();
         if (respuesta.isEmpty()) {
             respuesta = " ";
@@ -78,15 +87,23 @@ public class Vista {
             System.out.println("1. Añadir artículo");
             System.out.println("2. Mostrar artículo");
             System.out.println("0. Volver al menu");
+
             opcion = opcionMenu();
-            switch (opcion) {
-                case '1':
-                    leerInfoArticulo();
-                case '2':
-                    mostrarArticulo();
-                case '0':
-                    volver = true;
-                    break;
+
+            try {
+                switch (opcion) {
+                    case '1':
+                        leerInfoArticulo();
+                    case '2':
+                        mostrarArticulo();
+                    case '0':
+                        volver = true;
+                        break;
+                    default:
+                        throw new OpcionInvalida();
+                }
+            } catch (OpcionInvalida e){
+                System.out.println("Error: " + e.getMessage());
             }
         } while (!volver);
     }
@@ -121,21 +138,25 @@ public class Vista {
             System.out.println(e.getMessage());
         }
     }
+
     /**
      * Muestra un artículo en base a su código.
      */
     private void mostrarArticulo() {
-
         System.out.println("- Inserta el codigo del articulo");
         String codigo = input.nextLine();
 
-        String articulo = controlador.mostrarArticulo(codigo);
+        try {
+            String articulo = controlador.mostrarArticulo(codigo);
 
-        if (articulo != null) {
-            String art = articulo.toString();
-            System.out.println(art);
-        } else {
-            System.out.println("Articulo no encontrado");
+            if (articulo != null) {
+                String art = articulo.toString();
+                System.out.println(art);
+            } else {
+                throw new ElementoNoExistente();
+            }
+        } catch (ElementoNoExistente e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -143,7 +164,6 @@ public class Vista {
      * Muestra un menú para la gestión de clientes.
      */
     private void menuCliente() {
-
         char opcion;
         boolean volver = false;
         do {
@@ -152,14 +172,21 @@ public class Vista {
             System.out.println("2. Mostrar cliente");
             System.out.println("0. Volver al menú");
             opcion = opcionMenu();
-            switch (opcion) {
-                case '1':
-                    leerInfoCliente();
-                case '2':
-                    mostrarCliente();
-                case '0':
-                    volver = true;
-                    break;
+
+            try {
+                switch (opcion) {
+                    case '1':
+                        leerInfoCliente();
+                    case '2':
+                        mostrarCliente();
+                    case '0':
+                        volver = true;
+                        break;
+                    default:
+                        throw new OpcionInvalida();
+                }
+            } catch (OpcionInvalida e){
+                System.out.println("Error: " + e.getMessage());
             }
         } while (!volver);
     }
@@ -169,7 +196,6 @@ public class Vista {
      */
     private void leerInfoCliente() {
         try {
-
             System.out.println("- Inserta el nombre (Nombre y apellidos)");
             String nombre = input.nextLine();
 
@@ -226,13 +252,17 @@ public class Vista {
         System.out.println("- Inserta el NIF del cliente ");
         String nif = input.nextLine();
 
-        String cliente = controlador.mostrarCliente(nif);
+        try {
+            String cliente = controlador.mostrarCliente(nif);
 
-        if (cliente != null) {
-            String cli = cliente.toString();
-            System.out.println(cli);
-        } else {
-            System.out.println("Cliente no registrado");
+            if (cliente != null) {
+                String cli = cliente.toString();
+                System.out.println(cli);
+            } else {
+                throw new ElementoNoExistente();
+            }
+        } catch (ElementoNoExistente e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }

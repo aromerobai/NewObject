@@ -9,15 +9,9 @@ import java.util.ArrayList;
  * Clase que representa el controlador de una tienda en línea.
  */
 public class Controlador {
-    private Datos datos;
-    private Vista vista;
+    Datos datos = new Datos();
+    Vista vista;
 
-    /**
-     * Constructor por defecto del controlador. Inicializa el controlador.
-     */
-    public Controlador() {
-        this.datos = new Datos();
-    }
 
     /**
      * Inicia la aplicación creando una instancia de la Vista y mostrando el menú principal.

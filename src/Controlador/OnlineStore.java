@@ -7,9 +7,6 @@ import Vista.Vista;
  * Clase principal que inicia online store
  */
 public class OnlineStore {
-    /**
-     * Punto de entrada principal de la aplicación.
-     */
     Controlador controlador = new Controlador();
 
     /**

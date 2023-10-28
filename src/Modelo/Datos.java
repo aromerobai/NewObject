@@ -123,7 +123,7 @@ public class Datos {
     }
 /*
     public boolean existenPedido(int num) {
-        return pedidos.compruebaExistencia(num);
+        return pedidos.compruebaExistenciaPedido(num);
     }
 */
 
