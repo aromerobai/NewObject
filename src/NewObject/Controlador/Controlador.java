@@ -1,7 +1,10 @@
-package Controlador;
+package NewObject.Controlador;
 
-import Modelo.*;
-import Vista.Vista;
+
+import NewObject.Modelo.Datos;
+import NewObject.Modelo.EstadoPedido;
+import NewObject.Modelo.TipoCliente;
+import NewObject.Vista.Vista;
 
 
 /**

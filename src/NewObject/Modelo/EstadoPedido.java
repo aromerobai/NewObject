@@ -1,4 +1,4 @@
-package Modelo;
+package NewObject.Modelo;
 
 /**
  * El enum EstadoPedido define los estados posibles de un pedido en una tienda en línea.

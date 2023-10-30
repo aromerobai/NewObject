@@ -1,4 +1,4 @@
-package Modelo;
+package NewObject.Modelo;
 
 /**
  * Enumeración que representa los tipos de cliente en una tienda en línea.

@@ -1,11 +1,11 @@
 
-package Vista;
+package NewObject.Vista;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import Controlador.Controlador;
-import Modelo.EstadoPedido;
-import Modelo.TipoCliente;
+import NewObject.Controlador.Controlador;
+import NewObject.Modelo.EstadoPedido;
+import NewObject.Modelo.TipoCliente;
 import NewObject.Excepciones.*;
 import java.util.Scanner;
 

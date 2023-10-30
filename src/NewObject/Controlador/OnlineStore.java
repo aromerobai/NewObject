@@ -1,4 +1,4 @@
-package Controlador;
+package NewObject.Controlador;
 
 /**
  * Clase principal que inicia online store

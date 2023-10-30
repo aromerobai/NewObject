@@ -1,4 +1,4 @@
-package Modelo;
+package NewObject.Modelo;
 
 /**
  * La clase Articulo representa un artículo en una tienda en línea.

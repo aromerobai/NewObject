@@ -1,6 +1,5 @@
-package Modelo;
+package NewObject.Modelo;
 
-import NewObject.Excepciones.*;
 import java.util.ArrayList;
 
 /**

@@ -1,4 +1,4 @@
-package Modelo;
+package NewObject.Modelo;
 
 /**
  * Clase que representa un cliente.

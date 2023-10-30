@@ -1,6 +1,4 @@
-package Modelo;
-
-import java.time.LocalDateTime;
+package NewObject.Modelo;
 
 /**
  * La clase Pedido representa un pedido de un cliente en una tienda en línea.

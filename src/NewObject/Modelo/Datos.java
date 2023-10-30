@@ -1,6 +1,4 @@
-package Modelo;
-
-import java.time.LocalDateTime;
+package NewObject.Modelo;
 
 /**
  * Clase que representa el modelo de datos de una tienda en línea.

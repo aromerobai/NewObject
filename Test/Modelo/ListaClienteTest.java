@@ -1,9 +1,9 @@
 package Modelo;
 
+import NewObject.Modelo.ListaCliente;
+import NewObject.Modelo.TipoCliente;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ListaClienteTest {
 
