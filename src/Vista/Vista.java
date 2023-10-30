@@ -48,6 +48,7 @@ public class Vista {
                         menuCliente();
                         break;
                     case '3':
+                        menuPedido();
                         break;
                     case '0':
                         salir = true;
@@ -265,5 +266,10 @@ public class Vista {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+    private void menuPedido(){
+
+    }
+
 }
 
