@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class ListaArticulo extends Lista{
 
-    private ArrayList<Articulo> articulos ;
+    public ArrayList<Articulo> articulos ;
 
     /**
      * Constructor por defecto de ListaArticulo.

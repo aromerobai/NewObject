@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.time.LocalDateTime;
+
 /**
  * Clase que representa el modelo de datos de una tienda en línea.
  */
@@ -68,10 +70,34 @@ public class Datos {
     /**
      * Agrega un pedido al modelo de datos.
      *
-     * @param pedido El pedido a agregar.
+     * @param id      El ID del pedido.
+     * @param cliente El NIF del cliente que realiza el pedido.
+     * @param articulo El código del artículo solicitado en el pedido.
+     * @param cantidad La cantidad de unidades del artículo solicitado.
+     * @param fecha   La fecha en que se realiza el pedido.
+     * @param estado  El estado del pedido (ENVIADO o PENDIENTE).
      */
-    public void agregarPedido(Pedido pedido) {
-        pedidos.agregarPedido(pedido);
+    public void agregarPedido(int id,  String cliente, String articulo, int cantidad, String fecha, EstadoPedido estado) {
+        Cliente cli = null;
+        for (Cliente clientePedido : clientes.clientes) {
+            if (clientePedido.getNif().equals(cliente)) {
+                cli = clientePedido;
+            }
+        }
+
+        Articulo art = null;
+        for (Articulo articuloPedido : articulos.articulos) {
+            if (articuloPedido.getCodigo().equals(articulo)) {
+                art = articuloPedido;
+            }
+        }
+        if (cli == null){
+            System.out.println("No existe el cliente seleccionado");
+        }else if (art == null){
+            System.out.println("No existe el articulo seleccionado");
+        }else{
+            pedidos.agregarPedido(id, cantidad, cli, art, fecha, estado);
+        }
     }
 
     /**
@@ -79,8 +105,29 @@ public class Datos {
      *
      * @return La lista de pedidos.
      */
-    public ListaPedido getPedido() {
-        return pedidos;
+    public String getPedido(int id) {
+        String pedido = pedidos.getPedidos(id);
+        return pedido;
+    }
+
+    /**
+     * Obtiene la información de los pedidos pendientes.
+     *
+     * @return Una cadena que contiene información sobre los pedidos pendientes.
+     */
+    public String getPedidoPend(){
+        String pedido = pedidos.getPedidosPend();
+        return pedido;
+    }
+
+    /**
+     * Obtiene la información de los pedidos enviados.
+     *
+     * @return Una cadena que contiene información sobre los pedidos enviados.
+     */
+    public String getPedidoEnvi(){
+        String pedido = pedidos.getPedidosEnvi();
+        return pedido;
     }
 
     /**
@@ -88,8 +135,9 @@ public class Datos {
      *
      * @param id El ID del pedido a borrar.
      */
-    public void borrarPedido(Integer id) {
-        // Implementación del método para borrar pedidos en el futuro.
+    public boolean borrarPedido(Integer id) {
+        boolean exito = pedidos.borrarPedido(id);
+        return exito;
     }
 
     @Override
@@ -100,7 +148,6 @@ public class Datos {
                 ", clientes=" + clientes +
                 '}';
     }
-
 
     /**
      * Comprueba si existe un artículo en la lista de artículos a través de su código.
@@ -121,11 +168,17 @@ public class Datos {
     public boolean existeCliente(String nif) {
         return clientes.compruebaExistenciaCliente(nif);
     }
-/*
-    public boolean existenPedido(int num) {
+
+    /**
+     * Comprueba si existe un pedido en el modelo de datos a través de su número de pedido.
+     *
+     * @param num El número de pedido a verificar.
+     * @return true si el pedido con el número dado existe en el modelo de datos, false en caso contrario.
+     */
+    public boolean existePedido(int num) {
         return pedidos.compruebaExistenciaPedido(num);
     }
-*/
+
 
 
 }

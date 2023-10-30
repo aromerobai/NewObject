@@ -1,11 +1,12 @@
 
 package Vista;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import Controlador.Controlador;
+import Modelo.EstadoPedido;
 import Modelo.TipoCliente;
 import NewObject.Excepciones.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -16,9 +17,38 @@ public class Vista {
     Scanner input = new Scanner(System.in);
 
     /**
+     * Carga datos de ejemplo en el controlador para inicializar el sistema.
+     * Agrega artículos, clientes y pedidos de muestra.
+     */
+    public void  cargarDatos(){
+        controlador.agregarArticulo("1", "Sistema refrigeración", 89.50f, 7.99f, 24);
+        controlador.agregarArticulo("2", "Monitor", 109.22f, 7.99f, 48);
+        controlador.agregarArticulo("3", "Memoria Ram 8gb", 47.25f, 20.50f, 40);
+        controlador.agregarArticulo("4", "Disco duro 500gb", 68.99f, 12.99f, 50);
+        controlador.agregarArticulo("5", "Ratón cableado", 18.55f, 4.45f, 24);
+
+        TipoCliente estandar = TipoCliente.ESTANDAR;
+        TipoCliente premium = TipoCliente.PREMIUM;
+        controlador.agregarCliente("Daniel Freijó", "Barcelona 1", "1111", "dani@mail.com", estandar, 0.0f, null);
+        controlador.agregarCliente("Andrés Romero", "Zaragoza 1", "2222", "andres@mail.com", premium, 0.4f, 10.99f);
+        controlador.agregarCliente("Moisés Molina", "Burgos 1", "3333", "moises@mail.com", estandar, 0.0f, null);
+        controlador.agregarCliente("Roger Gallofré", "Falsa 4", "4444", "roger@mail.com", premium, 0.4f, 10.99f);
+        controlador.agregarCliente("Cristina Romero", "Lopez 1", "5555", "cristina@mail.com", estandar, 0.0f, null);
+
+        EstadoPedido enviado = EstadoPedido.ENVIADO;
+        EstadoPedido pendiente = EstadoPedido.PENDIENTE;
+        controlador.agregarPedido(1, "5555", "1", 4, "28/10/2023 06:05:15", enviado);
+        controlador.agregarPedido(2, "4444", "2", 2, "29/10/2023 18:05:35", pendiente);
+        controlador.agregarPedido(3, "3333","3", 8,"27/10/2023 21:05:15", enviado);
+        controlador.agregarPedido(4, "2222", "4", 5,"30/10/2023 12:05:15", pendiente);
+        controlador.agregarPedido(5, "1111", "5", 4, "29/10/2023 19:05:15", enviado);
+    }
+
+    /**
      * Constructor de la vista.
      */
     public Vista() {
+        cargarDatos();
     }
 
     /**
@@ -84,7 +114,7 @@ public class Vista {
         char opcion;
         boolean volver = false;
         do {
-            System.out.println("\nMENU DE GESTION DE ARTICULOS \n");
+            System.out.println("\nMENÚ DE GESTIÓN DE ARTÍCULOS \n");
             System.out.println("1. Añadir artículo");
             System.out.println("2. Mostrar artículo");
             System.out.println("0. Volver al menu");
@@ -95,8 +125,10 @@ public class Vista {
                 switch (opcion) {
                     case '1':
                         leerInfoArticulo();
+                        break;
                     case '2':
                         mostrarArticulo();
+                        break;
                     case '0':
                         volver = true;
                         break;
@@ -125,10 +157,10 @@ public class Vista {
             String descripcion = input.nextLine();
 
             System.out.println("- Inserta el precio");
-            Float precio = Float.valueOf(input.nextLine());
+            float precio = Float.valueOf(input.nextLine());
 
             System.out.println("- Inserta los gastos de envio");
-            Float gastos = Float.valueOf(input.nextLine());
+            float gastos = Float.valueOf(input.nextLine());
 
             System.out.println("- Inserta tiempo de preparacion");
             int preparacion = Integer.valueOf(input.nextLine());
@@ -138,6 +170,7 @@ public class Vista {
         catch (ElementoExistente e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     /**
@@ -168,7 +201,7 @@ public class Vista {
         char opcion;
         boolean volver = false;
         do {
-            System.out.println("\nMENU DE GESTIÓN DE CLIENTE \n");
+            System.out.println("\nMENÚ DE GESTIÓN DE CLIENTE \n");
             System.out.println("1. Añadir cliente");
             System.out.println("2. Mostrar cliente");
             System.out.println("0. Volver al menú");
@@ -178,8 +211,10 @@ public class Vista {
                 switch (opcion) {
                     case '1':
                         leerInfoCliente();
+                        break;
                     case '2':
                         mostrarCliente();
+                        break;
                     case '0':
                         volver = true;
                         break;
@@ -200,7 +235,7 @@ public class Vista {
             System.out.println("- Inserta el nombre (Nombre y apellidos)");
             String nombre = input.nextLine();
 
-            System.out.println("- Inserta la direccion del domicilio (calle y número, ciudad, provincia");
+            System.out.println("- Inserta la direccion del domicilio (calle y número, ciudad, provincia)");
             String domicilio = input.nextLine();
 
             System.out.println("- Inserta el NIF (00000000X)");
@@ -210,7 +245,7 @@ public class Vista {
                 throw new ElementoExistente();
             }
 
-            System.out.println("\n- Inserta el correo electronico");
+            System.out.println("- Inserta el correo electronico");
             String email = input.nextLine();
 
             System.out.println("- Inserta el tipo de cliente (Estandar o Premium)");
@@ -267,8 +302,184 @@ public class Vista {
         }
     }
 
+    /**
+     * Menú de gestión de pedidos que permite al usuario agregar, eliminar y listar pedidos.
+     * Proporciona opciones para gestionar pedidos y volver al menú principal.
+     */
     private void menuPedido(){
+        char opcion;
+        boolean volver = false;
+        do {
+            System.out.println("\nMENÚ DE GESTIÓN DE PEDIDOS \n");
+            System.out.println("1. Agregar Pedido");
+            System.out.println("2. Eliminar Pedido");
+            System.out.println("3. Listar Pedidos");
+            System.out.println("0. Volver al menú principal");
+            opcion = opcionMenu();
 
+            try {
+                switch (opcion) {
+                    case '1':
+                        leerInfoPedido();
+                        break;
+                    case '2':
+                        eliminarPedido();
+                        break;
+                    case '3':
+                        menuMostrarPedido();
+                        break;
+                    case '0':
+                        volver = true;
+                        break;
+                    default:
+                        throw new OpcionInvalida();
+                }
+            } catch (OpcionInvalida e){
+                System.out.println("Error: " + e.getMessage());
+            }
+        } while (!volver);
+    }
+
+    /**
+     * Menú para mostrar pedidos pendientes, pedidos enviados y listar un pedido por ID.
+     * Proporciona opciones para mostrar diferentes tipos de pedidos y volver al menú principal.
+     */
+    private void menuMostrarPedido(){
+        char opcion;
+        boolean volver = false;
+        do {
+            System.out.println("\n1. Mostrar pedidos 'Pendientes'");
+            System.out.println("2. Mostrar pedidos 'Enviados'");
+            System.out.println("3. Listar Pedido por ID");
+            System.out.println("0. Volver al menú principal");
+            opcion = opcionMenu();
+
+            try {
+                switch (opcion) {
+                    case '1':
+                        mostrarPedidoPen();
+                        break;
+                    case '2':
+                        mostrarPedidoEnv();
+                        break;
+                    case '3':
+                        mostrarPedido();
+                        break;
+                    case '0':
+                        volver = true;
+                        break;
+                    default:
+                        throw new OpcionInvalida();
+                }
+            } catch (OpcionInvalida e){
+                System.out.println("Error: " + e.getMessage());
+            }
+        } while (!volver);
+    }
+
+    /**
+     * Lee la información necesaria para agregar un nuevo pedido.
+     * Solicita los datos del pedido, verifica si el ID del pedido ya existe y maneja la excepción ElementoExistente.
+     * Luego, agrega el pedido a la base de datos.
+     */
+    private void leerInfoPedido(){
+
+        try {
+            System.out.println("- Inserta el ID del pedido: ");
+            int id = input.nextInt();
+            input.nextLine(); // Consumir la nueva línea pendiente
+
+            if (controlador.pedidoExiste(id)){
+                throw new ElementoExistente();
+            }
+            System.out.println("- Inserta el nif del cliente: ");
+            String nifCliente = input.nextLine();
+
+            System.out.println("- Inserta el codigo del artículo: ");
+            String articulo = input.nextLine();
+
+            System.out.println("- Inserta la cantidad: ");
+            int cantidad = input.nextInt();
+            input.nextLine(); // Consumir la nueva línea pendiente
+
+            LocalDateTime fechaActual = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            String fecha = fechaActual.format(formatter);
+
+            System.out.print("- Inserta el estado del pedido (PENDIENTE/ENVIADO): ");
+            String estadoPed = input.nextLine().toUpperCase();
+
+            EstadoPedido estado = null;
+            if (estadoPed.equals("PENDIENTE")) {
+                estado = EstadoPedido.PENDIENTE;
+                controlador.agregarPedido(id, nifCliente, articulo,  cantidad, fecha, estado);
+            } else {
+                estado = EstadoPedido.ENVIADO;
+                controlador.agregarPedido(id, nifCliente, articulo,  cantidad, fecha, estado);
+            }
+        } catch (ElementoExistente e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Elimina un pedido identificado por su ID.
+     * Solicita el ID del pedido al usuario y elimina el pedido si es posible.
+     * Muestra un mensaje de éxito o error según el resultado.
+     */
+    private void eliminarPedido(){
+        System.out.println("- Inserta el ID del pedido: ");
+        int id = input.nextInt();
+
+        boolean exito = controlador.borrarPedido(id);
+
+        if (exito == true) {
+            System.out.println("Pedido eliminado con éxito");
+        }else{
+            System.out.println("No se ha podido eliminar el pedido, porque ya ha sido enviado");
+        }
+    }
+
+    /**
+     * Muestra la información de un pedido identificado por su ID.
+     * Solicita el ID del pedido al usuario y muestra los detalles del pedido si se encuentra en la base de datos.
+     */
+    private void mostrarPedido(){
+        System.out.println("- Inserta el ID del pedido: ");
+        int id = input.nextInt();
+
+        String pedido = controlador.mostrarPedido(id);
+
+        if (pedido != null){
+            String ped = pedido.toString();
+            System.out.println(ped);
+        }
+    }
+
+    /**
+     * Muestra la información de los pedidos con estado "PENDIENTE".
+     * Obtiene y muestra los detalles de los pedidos pendientes.
+     */
+    private void mostrarPedidoPen(){
+        String pedido = controlador.mostrarPedidoPend();
+
+        if (pedido != null){
+            String info = pedido.toString();
+            System.out.println(info);
+        }
+    }
+
+    /**
+     * Muestra la información de los pedidos con estado "ENVIADO".
+     * Obtiene y muestra los detalles de los pedidos enviados.
+     */
+    private void mostrarPedidoEnv(){
+        String pedido = controlador.mostrarPedidoEnvi();
+
+        if (pedido != null){
+            String info = pedido.toString();
+            System.out.println(info);
+        }
     }
 
 }

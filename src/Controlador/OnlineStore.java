@@ -1,8 +1,5 @@
 package Controlador;
 
-import NewObject.Excepciones.ElementoExistente;
-import Vista.Vista;
-
 /**
  * Clase principal que inicia online store
  */

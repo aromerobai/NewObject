@@ -2,8 +2,7 @@ package Controlador;
 
 import Modelo.*;
 import Vista.Vista;
-import NewObject.Excepciones.*;
-import java.util.ArrayList;
+
 
 /**
  * Clase que representa el controlador de una tienda en línea.
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 public class Controlador {
     Datos datos = new Datos();
     Vista vista;
-
 
     /**
      * Inicia la aplicación creando una instancia de la Vista y mostrando el menú principal.
@@ -77,20 +75,46 @@ public class Controlador {
     /**
      * Agrega un pedido al sistema.
      *
-     * @param pedido El pedido a agregar.
+     * @param id      El ID del pedido.
+     * @param cliente El NIF del cliente que realiza el pedido.
+     * @param articulo El código del artículo solicitado en el pedido.
+     * @param cantidad La cantidad de unidades del artículo solicitado.
+     * @param fecha   La fecha en que se realiza el pedido.
+     * @param estado  El estado del pedido (ENVIADO o PENDIENTE).
      */
-    public void agregarPedido(Pedido pedido){}
+    public void agregarPedido(int id, String cliente, String articulo, int cantidad, String fecha, EstadoPedido estado){
+        datos.agregarPedido(id, cliente, articulo, cantidad, fecha, estado);
+    }
 
     /**
-     * Muestra la lista de pedidos basada en el NIF del cliente y el estado del pedido (actualmente no implementado).
+     * Muestra la información de un pedido específico identificado por su ID.
      *
-     * @param nif           El NIF del cliente.
-     * @param estadoPedido  El estado del pedido.
-     * @return Una instancia de ListaPedido que contendría la lista de pedidos.
+     * @param id El ID del pedido que se desea mostrar.
+     * @return Una cadena de texto con la información del pedido.
      */
-    public ListaPedido mostrarPedido(String nif,EstadoPedido estadoPedido){
-        //En el futuro devolvera un objeto ListaPedido
-        return null;
+    public String mostrarPedido(int id){
+        String pedido = datos.getPedido(id);
+        return pedido;
+    }
+
+    /**
+     * Muestra la información de los pedidos con estado "PENDIENTE".
+     *
+     * @return Una cadena de texto con la información de los pedidos pendientes.
+     */
+    public String mostrarPedidoPend(){
+        String pedido = datos.getPedidoPend();
+        return pedido;
+    }
+
+    /**
+     * Muestra la información de los pedidos con estado "ENVIADO".
+     *
+     * @return Una cadena de texto con la información de los pedidos enviados.
+     */
+    public String mostrarPedidoEnvi(){
+        String pedido = datos.getPedidoEnvi();
+        return pedido;
     }
 
     /**
@@ -98,7 +122,10 @@ public class Controlador {
      *
      * @param id El ID del pedido a borrar.
      */
-    public void borrarPedido(Integer id){}
+    public boolean borrarPedido(Integer id){
+        boolean exito = datos.borrarPedido(id);
+        return exito;
+    }
 
     /**
      * Devuelve una representación en forma de cadena de la instancia de Controlador.
@@ -130,6 +157,16 @@ public class Controlador {
      */
     public boolean clienteExiste(String nif) {
         return datos.existeCliente(nif);
+    }
+
+    /**
+     * Comprueba si existe un pedido en el modelo de datos a través de su ID.
+     *
+     * @param id El ID del pedido a verificar.
+     * @return true si el pedido con el ID dado existe en el modelo de datos, false en caso contrario.
+     */
+    public boolean pedidoExiste(int id) {
+        return datos.existePedido(id);
     }
 
 }

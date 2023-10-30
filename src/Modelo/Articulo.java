@@ -6,8 +6,8 @@ package Modelo;
 public class Articulo {
     private String codigo;
     private String descripcion;
-    private Float precio;
-    private Float gastosEnvio;
+    private float precio;
+    private float gastosEnvio;
     private int preparacion;
 
     /**
@@ -132,7 +132,7 @@ public class Articulo {
      */
     @Override
     public String toString() {
-        return "Articulo{ " +
+        return "Articulo{ \n" +
                 "código= " + codigo +
                 ", descripción= " + descripcion +
                 ", precio= " + precio + " €" +

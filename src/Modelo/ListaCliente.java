@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class ListaCliente extends Lista{
 
-    private ArrayList<Cliente> clientes;
+    public ArrayList<Cliente> clientes;
 
     /**
      * Constructor por defecto de ListaCliente.
