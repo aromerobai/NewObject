@@ -448,11 +448,17 @@ public class Vista {
         System.out.println("- Inserta el ID del pedido: ");
         int id = input.nextInt();
 
-        String pedido = controlador.mostrarPedido(id);
+        try {
+            String pedido = controlador.mostrarPedido(id);
 
-        if (pedido != null){
-            String ped = pedido.toString();
-            System.out.println(ped);
+            if (pedido != null) {
+                String ped = pedido.toString();
+                System.out.println(ped);
+            }else {
+                throw new ElementoNoExistente();
+            }
+        } catch (ElementoNoExistente e){
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
