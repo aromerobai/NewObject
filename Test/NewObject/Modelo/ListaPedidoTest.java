@@ -17,21 +17,16 @@ class ListaPedidoTest {
     void getPedidos() {
         listaPedido.agregarPedido(1, 3,clientePremium, articulo, "28/10/2023 06:05:15", enviado);
         String resultado = listaPedido.getPedidos(1);
-        String esperado = listaPedido.getPedidos(1);
-        Assertions.assertEquals(esperado,resultado);
-    }
-
-    @Test
-    void getPedidosPend() {
-        String resultado = listaPedido.getPedidosPend();;
-        String esperado = listaPedido.getPedidosPend();
-        Assertions.assertEquals(esperado,resultado);
-    }
-
-    @Test
-    void getPedidosEnvi() {
-        String resultado = listaPedido.getPedidosEnvi();;
-        String esperado = listaPedido.getPedidosEnvi();
+        String esperado = "Pedido{\n" +
+                "id= " + "1" +
+                ", fecha= " + "28/10/2023 06:05:15" + "\n" +
+                ", cliente= " + "Andrés Romero" + ", nif: " + "2222" + "\n" +
+                ", articulo= id: " + "1" + " descripción: " + "Sistema refrigeración" + " precio unidad: " + "89.5" + " €\n" +
+                ", cantidad= " + "3" +
+                ", coste envío= " + "4.7939997" + " €\n" +
+                ", precio total= " + "273.294" + " €\n" +
+                ", estado= "  + "ENVIADO" +
+                " }\n" + "======================================================================================================================\n";
         Assertions.assertEquals(esperado,resultado);
     }
 
@@ -39,7 +34,7 @@ class ListaPedidoTest {
     void compruebaExistenciaPedido() {
         listaPedido.agregarPedido(1, 3,clientePremium, articulo, "28/10/2023 06:05:15", enviado);
         boolean resultado = listaPedido.compruebaExistenciaPedido(1);
-        boolean esperado = listaPedido.compruebaExistenciaPedido(1);
+        boolean esperado = true;
         Assertions.assertEquals(esperado,resultado);
     }
 }
