@@ -1,4 +1,4 @@
-package Modelo;
+package NewObject.Modelo;
 
 import NewObject.Modelo.ListaCliente;
 import NewObject.Modelo.TipoCliente;

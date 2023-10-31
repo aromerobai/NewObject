@@ -1,4 +1,4 @@
-package Modelo;
+package NewObject.Modelo;
 
 import NewObject.Modelo.ListaArticulo;
 import org.junit.jupiter.api.Assertions;
