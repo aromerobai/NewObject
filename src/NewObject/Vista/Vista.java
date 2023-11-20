@@ -3,18 +3,28 @@ package NewObject.Vista;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import NewObject.Controlador.ConexionDB;
 import NewObject.Controlador.Controlador;
 import NewObject.Modelo.EstadoPedido;
 import NewObject.Modelo.TipoCliente;
 import NewObject.Excepciones.*;
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Clase que representa la vista de una tienda en línea.
  */
 public class Vista {
+
+
     Controlador controlador = new Controlador();
     Scanner input = new Scanner(System.in);
+
+    private ConexionDB conexionDB;
 
     /**
      * Carga datos de ejemplo en el controlador para inicializar el sistema.
@@ -177,19 +187,38 @@ public class Vista {
      * Muestra un artículo en base a su código.
      */
     private void mostrarArticulo() {
-        System.out.println("- Inserta el codigo del articulo");
+        this.conexionDB = new ConexionDB();
+        System.out.println("- Inserta el código del artículo");
         String codigo = input.nextLine();
 
-        try {
-            String articulo = controlador.mostrarArticulo(codigo);
+        // Utilizar la conexión de la clase ConexionDB
+        try (Connection connection = conexionDB.getConnection()) {
+            // Consulta SQL para obtener datos del artículo
+            String sql = "SELECT * FROM Articulo WHERE codigo = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, codigo);
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (articulo != null) {
-                String art = articulo.toString();
-                System.out.println(art);
-            } else {
-                throw new ElementoNoExistente();
+                if (resultSet.next()) {
+                    String codigoArticulo = resultSet.getString("codigo");
+                    String descripcion = resultSet.getString("descripcion");
+                    double precio = resultSet.getDouble("precio");
+                    double gastoEnvio = resultSet.getDouble("gastoEnvio");
+                    int preparacion = resultSet.getInt("preparacion");
+
+                    // Realizar operaciones con los datos obtenidos
+                    System.out.println("Código: " + codigoArticulo);
+                    System.out.println("Descripción: " + descripcion);
+                    System.out.println("Precio: " + precio);
+                    System.out.println("Gasto de Envío: " + gastoEnvio);
+                    System.out.println("Tiempo de Preparación: " + preparacion);
+                    System.out.println();
+                } else {
+                    throw new ElementoNoExistente();
+                }
             }
-        } catch (ElementoNoExistente e) {
+        } catch (SQLException | ElementoNoExistente e) {
+            e.printStackTrace();
             System.out.println("Error: " + e.getMessage());
         }
     }
