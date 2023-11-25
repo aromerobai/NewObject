@@ -1,10 +1,13 @@
 package NewObject.Controlador;
 
 
+import NewObject.Excepciones.DAOException;
 import NewObject.Modelo.Datos;
 import NewObject.Modelo.EstadoPedido;
 import NewObject.Modelo.TipoCliente;
 import NewObject.Vista.Vista;
+
+import java.sql.SQLException;
 
 
 /**
@@ -31,7 +34,7 @@ public class Controlador {
      * @param gastos       Los gastos asociados al artículo.
      * @param preparacion  El tiempo de preparación del artículo en minutos.
      */
-    public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastos, int preparacion) {
+    public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastos, int preparacion) throws DAOException, SQLException {
         datos.agregarArticulo(codigo, descripcion, precio, gastos, preparacion);
     }
 
@@ -41,7 +44,7 @@ public class Controlador {
      * @param codigo El código del artículo a buscar.
      * @return El artículo encontrado o null si no se encuentra.
      */
-    public String mostrarArticulo(String codigo){
+    public String mostrarArticulo(String codigo) throws DAOException, SQLException {
         String articulo = datos.getArticulo(codigo);
         return articulo;
     }
@@ -148,7 +151,7 @@ public class Controlador {
      * @param codigo El código del artículo a verificar.
      * @return true si el artículo con el código dado existe en el modelo de datos, false en caso contrario.
      */
-    public boolean articuloExiste(String codigo) {
+    public boolean articuloExiste(String codigo) throws SQLException {
         return datos.existeArticulo(codigo);
     }
 

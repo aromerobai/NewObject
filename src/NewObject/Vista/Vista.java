@@ -10,16 +10,11 @@ import NewObject.Modelo.EstadoPedido;
 import NewObject.Modelo.TipoCliente;
 import NewObject.Excepciones.*;
 import java.util.Scanner;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Clase que representa la vista de una tienda en línea.
  */
 public class Vista {
-
 
     Controlador controlador = new Controlador();
     Scanner input = new Scanner(System.in);
@@ -31,11 +26,11 @@ public class Vista {
      * Agrega artículos, clientes y pedidos de muestra.
      */
     public void  cargarDatos(){
-        controlador.agregarArticulo("1", "Sistema refrigeración", 89.50f, 7.99f, 24);
+        /*controlador.agregarArticulo("1", "Sistema refrigeración", 89.50f, 7.99f, 24);
         controlador.agregarArticulo("2", "Monitor", 109.22f, 7.99f, 48);
         controlador.agregarArticulo("3", "Memoria Ram 8gb", 47.25f, 20.50f, 40);
         controlador.agregarArticulo("4", "Disco duro 500gb", 68.99f, 12.99f, 50);
-        controlador.agregarArticulo("5", "Ratón cableado", 18.55f, 4.45f, 24);
+        controlador.agregarArticulo("5", "Ratón cableado", 18.55f, 4.45f, 24);*/
 
         TipoCliente estandar = TipoCliente.ESTANDAR;
         TipoCliente premium = TipoCliente.PREMIUM;
@@ -179,6 +174,10 @@ public class Vista {
         }
         catch (ElementoExistente e) {
             System.out.println(e.getMessage());
+        } catch (DAOException e) {
+            System.out.println(e.getError());
+        } catch (java.sql.SQLException e) {
+            System.out.println(e.getMessage());
         }
 
     }
@@ -187,39 +186,24 @@ public class Vista {
      * Muestra un artículo en base a su código.
      */
     private void mostrarArticulo() {
-        this.conexionDB = new ConexionDB();
-        System.out.println("- Inserta el código del artículo");
+        System.out.println("- Inserta el codigo del articulo");
         String codigo = input.nextLine();
 
-        // Utilizar la conexión de la clase ConexionDB
-        try (Connection connection = conexionDB.getConnection()) {
-            // Consulta SQL para obtener datos del artículo
-            String sql = "SELECT * FROM Articulo WHERE codigo = ?";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, codigo);
-                ResultSet resultSet = preparedStatement.executeQuery();
+        try {
+            String articulo = controlador.mostrarArticulo(codigo);
 
-                if (resultSet.next()) {
-                    String codigoArticulo = resultSet.getString("codigo");
-                    String descripcion = resultSet.getString("descripcion");
-                    double precio = resultSet.getDouble("precio");
-                    double gastoEnvio = resultSet.getDouble("gastoEnvio");
-                    int preparacion = resultSet.getInt("preparacion");
-
-                    // Realizar operaciones con los datos obtenidos
-                    System.out.println("Código: " + codigoArticulo);
-                    System.out.println("Descripción: " + descripcion);
-                    System.out.println("Precio: " + precio);
-                    System.out.println("Gasto de Envío: " + gastoEnvio);
-                    System.out.println("Tiempo de Preparación: " + preparacion);
-                    System.out.println();
-                } else {
-                    throw new ElementoNoExistente();
-                }
+            if (articulo != null) {
+                String art = articulo.toString();
+                System.out.println(art);
+            } else {
+                throw new ElementoNoExistente();
             }
-        } catch (SQLException | ElementoNoExistente e) {
-            e.printStackTrace();
+        } catch (ElementoNoExistente e) {
             System.out.println("Error: " + e.getMessage());
+        } catch (DAOException e) {
+            System.out.println(e.getError());
+        } catch (java.sql.SQLException e) {
+            System.out.println("El articulo no existe");
         }
     }
 

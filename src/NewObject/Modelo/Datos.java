@@ -1,9 +1,20 @@
 package NewObject.Modelo;
 
+import NewObject.DAO.ArticuloDAO;
+import NewObject.DAO.DAOFactory;
+import NewObject.DAO.mysql.MysqlDAOFactory;
+import NewObject.Excepciones.DAOException;
+
+import java.sql.SQLException;
+
+
 /**
  * Clase que representa el modelo de datos de una tienda en línea.
  */
 public class Datos {
+
+    DAOFactory mysqlFactory = new MysqlDAOFactory();
+    ArticuloDAO articuloDAO = mysqlFactory.getArticuloDAO();
     private ListaArticulo articulos;
     private ListaPedido pedidos;
     private ListaCliente clientes;
@@ -26,8 +37,9 @@ public class Datos {
      * @param gastos       Los gastos asociados al artículo.
      * @param preparacion  El tiempo de preparación del artículo en minutos.
      */
-    public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastos, int preparacion) {
-        articulos.agregarArticulo(codigo, descripcion, precio, gastos, preparacion);
+    public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastos, int preparacion) throws DAOException, SQLException {
+        Articulo articulo = new Articulo(codigo, descripcion, precio, gastos, preparacion);
+        articuloDAO.insertar(articulo);
     }
 
     /**
@@ -35,9 +47,19 @@ public class Datos {
      *
      * @return La lista de artículos.
      */
-    public String getArticulo(String codigo){
-        String articulo = articulos.getArticulo(codigo);
-        return articulo;
+    public String getArticulo(String codigo) throws DAOException, SQLException {
+        String nombreArticulo = null;
+        nombreArticulo = articuloDAO.listarUno(codigo).toString();
+        return nombreArticulo;
+    }
+    /**
+     * Comprueba si existe un artículo en la lista de artículos a través de su código.
+     *
+     * @param codigo El código del artículo a verificar.
+     * @return true si el artículo con el código dado existe en la lista, false en caso contrario.
+     */
+    public boolean existeArticulo(String codigo) throws SQLException {
+        return articuloDAO.existe(codigo);
     }
 
     /**
@@ -138,24 +160,6 @@ public class Datos {
         return exito;
     }
 
-    @Override
-    public String toString() {
-        return "Datos{" +
-                "articulos=" + articulos +
-                ", pedidos=" + pedidos +
-                ", clientes=" + clientes +
-                '}';
-    }
-
-    /**
-     * Comprueba si existe un artículo en la lista de artículos a través de su código.
-     *
-     * @param codigo El código del artículo a verificar.
-     * @return true si el artículo con el código dado existe en la lista, false en caso contrario.
-     */
-    public boolean existeArticulo(String codigo) {
-        return articulos.compruebaExistenciaArticulo(codigo);
-    }
 
     /**
      * Comprueba si existe un cliente en la lista de clientes a través de su NIF.
@@ -176,7 +180,4 @@ public class Datos {
     public boolean existePedido(int num) {
         return pedidos.compruebaExistenciaPedido(num);
     }
-
-
-
 }
