@@ -79,7 +79,7 @@ public class Datos {
      * @param descuento El descuento aplicable al cliente (solo para clientes PREMIUM).
      * @param cuota     La cuota mensual (solo para clientes PREMIUM).
      */
-    public void agregarCliente(String nombre, String domicilio, String nif, String email, TipoCliente tipo, Float descuento, Float cuota) {
+    public void agregarCliente(String nombre, String domicilio, String nif, String email, TipoCliente tipo, Float descuento, Float cuota) throws DAOException, SQLException {
         clientes.agregarCliente(nombre, domicilio, nif, email, tipo, descuento, cuota);
     }
 
@@ -88,9 +88,21 @@ public class Datos {
      *
      * @return La lista de clientes.
      */
-    public String getCliente(String nif) {
-        String cliente = clientes.getCliente(nif);
-        return cliente;
+    public String getCliente(String nif) throws DAOException, SQLException {
+        String nombreCliente = null;
+        nombreCliente = clienteDAO.listarUno(nif).toString();
+
+        return nombreCliente;
+    }
+
+    /**
+     * Comprueba si existe un cliente en la lista de clientes a través de su NIF.
+     *
+     * @param nif El NIF del cliente a verificar.
+     * @return true si el cliente con el NIF dado existe en la lista, false en caso contrario.
+     */
+    public boolean existeCliente(String nif) throws SQLException {
+        return clienteDAO.existe(nif);
     }
 
     /**
@@ -166,16 +178,6 @@ public class Datos {
         return exito;
     }
 
-
-    /**
-     * Comprueba si existe un cliente en la lista de clientes a través de su NIF.
-     *
-     * @param nif El NIF del cliente a verificar.
-     * @return true si el cliente con el NIF dado existe en la lista, false en caso contrario.
-     */
-    public boolean existeCliente(String nif) {
-        return clientes.compruebaExistenciaCliente(nif);
-    }
 
     /**
      * Comprueba si existe un pedido en el modelo de datos a través de su número de pedido.

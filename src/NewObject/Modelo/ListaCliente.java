@@ -36,7 +36,6 @@ public class ListaCliente extends Lista{
         } else if (tipo == TipoCliente.ESTANDAR) {
             newCliente = new Estandar(nombre, domicilio, nif, email, tipo, descuento);
         }else{
-            // Excepción
             newCliente = null;
         }
         if (newCliente != null){

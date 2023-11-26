@@ -70,7 +70,7 @@ public class Controlador {
      * @param descuento El descuento aplicable al cliente (solo para clientes PREMIUM).
      * @param cuota     La cuota mensual (solo para clientes PREMIUM).
      */
-    public void agregarCliente(String nombre, String domicilio, String nif, String email, TipoCliente tipo, Float descuento, Float cuota) {
+    public void agregarCliente(String nombre, String domicilio, String nif, String email, TipoCliente tipo, Float descuento, Float cuota) throws DAOException, SQLException{
         if (tipo == TipoCliente.PREMIUM) {
             datos.agregarCliente(nombre, domicilio, nif, email, tipo, descuento, cuota);
         } else {
@@ -83,7 +83,7 @@ public class Controlador {
      *
      * @return Una instancia de ListaCliente que contendría la lista de clientes.
      */
-    public String mostrarCliente(String nif){
+    public String mostrarCliente(String nif) throws DAOException, SQLException{
         String cliente = datos.getCliente(nif);
         return cliente;
     }
@@ -94,7 +94,7 @@ public class Controlador {
      * @param nif El NIF del cliente a verificar.
      * @return true si el cliente con el NIF dado existe en el modelo de datos, false en caso contrario.
      */
-    public boolean clienteExiste(String nif) {
+    public boolean clienteExiste(String nif) throws SQLException {
         return datos.existeCliente(nif);
     }
 
