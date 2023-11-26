@@ -50,6 +50,16 @@ public class Controlador {
     }
 
     /**
+     * Comprueba si existe un artículo en el modelo de datos a través de su código.
+     *
+     * @param codigo El código del artículo a verificar.
+     * @return true si el artículo con el código dado existe en el modelo de datos, false en caso contrario.
+     */
+    public boolean articuloExiste(String codigo) throws SQLException {
+        return datos.existeArticulo(codigo);
+    }
+
+    /**
      * Agrega un cliente al sistema.
      *
      * @param nombre    El nombre del cliente.
@@ -76,6 +86,16 @@ public class Controlador {
     public String mostrarCliente(String nif){
         String cliente = datos.getCliente(nif);
         return cliente;
+    }
+
+    /**
+     * Comprueba si existe un cliente en el modelo de datos a través de su NIF.
+     *
+     * @param nif El NIF del cliente a verificar.
+     * @return true si el cliente con el NIF dado existe en el modelo de datos, false en caso contrario.
+     */
+    public boolean clienteExiste(String nif) {
+        return datos.existeCliente(nif);
     }
 
     /**
@@ -134,6 +154,16 @@ public class Controlador {
     }
 
     /**
+     * Comprueba si existe un pedido en el modelo de datos a través de su ID.
+     *
+     * @param id El ID del pedido a verificar.
+     * @return true si el pedido con el ID dado existe en el modelo de datos, false en caso contrario.
+     */
+    public boolean pedidoExiste(int id) {
+        return datos.existePedido(id);
+    }
+
+    /**
      * Devuelve una representación en forma de cadena de la instancia de Controlador.
      *
      * @return Una cadena que representa la instancia de Controlador.
@@ -143,36 +173,6 @@ public class Controlador {
         return "Controlador{" +
                 ", datos= " + datos +
                 " }";
-    }
-
-    /**
-     * Comprueba si existe un artículo en el modelo de datos a través de su código.
-     *
-     * @param codigo El código del artículo a verificar.
-     * @return true si el artículo con el código dado existe en el modelo de datos, false en caso contrario.
-     */
-    public boolean articuloExiste(String codigo) throws SQLException {
-        return datos.existeArticulo(codigo);
-    }
-
-    /**
-     * Comprueba si existe un cliente en el modelo de datos a través de su NIF.
-     *
-     * @param nif El NIF del cliente a verificar.
-     * @return true si el cliente con el NIF dado existe en el modelo de datos, false en caso contrario.
-     */
-    public boolean clienteExiste(String nif) {
-        return datos.existeCliente(nif);
-    }
-
-    /**
-     * Comprueba si existe un pedido en el modelo de datos a través de su ID.
-     *
-     * @param id El ID del pedido a verificar.
-     * @return true si el pedido con el ID dado existe en el modelo de datos, false en caso contrario.
-     */
-    public boolean pedidoExiste(int id) {
-        return datos.existePedido(id);
     }
 
 }

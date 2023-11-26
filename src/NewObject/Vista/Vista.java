@@ -177,7 +177,7 @@ public class Vista {
         } catch (DAOException e) {
             System.out.println(e.getError());
         } catch (java.sql.SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error accediendo a la base de datos");
         }
 
     }

@@ -14,7 +14,7 @@ import java.util.List;
 public class MysqlArticuloDAO implements ArticuloDAO {
     ConexionDB conexionDB = new ConexionDB();
     final String INSERT = "INSERT INTO articulo(codigo, descripcion, precio, gastoEnvio, preparacion) VALUES(?,?,?,?,?)";
-    final String GETONE = "SELECT codigo, descripcion, precio, gastoEnvio, preparacion FROM articulo WHERE codigo = ?";
+    final String SELECTBYCODIGO = "SELECT codigo, descripcion, precio, gastoEnvio, preparacion FROM articulo WHERE codigo = ?";
     final String EXISTE = "SELECT 1 FROM articulo WHERE codigo = ?";
 
 
@@ -54,7 +54,7 @@ public class MysqlArticuloDAO implements ArticuloDAO {
     public Articulo listarUno(String codigo) throws DAOException, SQLException {
         Articulo articulo = null;
         try (Connection conn = conexionDB.getConnection()) {
-            try(PreparedStatement stat = conn.prepareStatement(GETONE)) {
+            try(PreparedStatement stat = conn.prepareStatement(SELECTBYCODIGO)) {
                 stat.setString(1, codigo);
                 try(ResultSet rs = stat.executeQuery()) {
                     if (rs.next()) {

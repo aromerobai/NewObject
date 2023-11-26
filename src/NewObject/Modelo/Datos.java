@@ -1,6 +1,7 @@
 package NewObject.Modelo;
 
 import NewObject.DAO.ArticuloDAO;
+import NewObject.DAO.ClienteDAO;
 import NewObject.DAO.DAOFactory;
 import NewObject.DAO.mysql.MysqlDAOFactory;
 import NewObject.Excepciones.DAOException;
@@ -15,6 +16,7 @@ public class Datos {
 
     DAOFactory mysqlFactory = new MysqlDAOFactory();
     ArticuloDAO articuloDAO = mysqlFactory.getArticuloDAO();
+    ClienteDAO clienteDAO = mysqlFactory.getClienteDAO();
     private ListaArticulo articulos;
     private ListaPedido pedidos;
     private ListaCliente clientes;
