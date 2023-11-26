@@ -1,6 +1,7 @@
 package NewObject.DAO;
 
 import NewObject.Modelo.Articulo;
+import NewObject.Modelo.Cliente;
 
-public interface ClienteDAO extends DAO<Articulo, String>{
+public interface ClienteDAO extends DAO<Cliente, String>{
 }

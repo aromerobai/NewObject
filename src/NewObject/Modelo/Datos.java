@@ -14,9 +14,9 @@ import java.sql.SQLException;
  */
 public class Datos {
 
-    DAOFactory mysqlFactory = new MysqlDAOFactory();
-    ArticuloDAO articuloDAO = mysqlFactory.getArticuloDAO();
-    ClienteDAO clienteDAO = mysqlFactory.getClienteDAO();
+    DAOFactory mysqlFactory;
+    ArticuloDAO articuloDAO;
+    ClienteDAO clienteDAO;
     private ListaArticulo articulos;
     private ListaPedido pedidos;
     private ListaCliente clientes;
@@ -25,6 +25,9 @@ public class Datos {
      * Constructor por defecto de Datos.
      */
     public Datos() {
+        mysqlFactory = new MysqlDAOFactory();
+        articuloDAO = mysqlFactory.getArticuloDAO();
+        clienteDAO = mysqlFactory.getClienteDAO();
         this.articulos = new ListaArticulo();
         this.pedidos = new ListaPedido();
         this.clientes = new ListaCliente();
@@ -52,6 +55,7 @@ public class Datos {
     public String getArticulo(String codigo) throws DAOException, SQLException {
         String nombreArticulo = null;
         nombreArticulo = articuloDAO.listarUno(codigo).toString();
+
         return nombreArticulo;
     }
     /**

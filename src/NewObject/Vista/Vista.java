@@ -32,21 +32,21 @@ public class Vista {
         controlador.agregarArticulo("4", "Disco duro 500gb", 68.99f, 12.99f, 50);
         controlador.agregarArticulo("5", "Ratón cableado", 18.55f, 4.45f, 24);*/
 
-        TipoCliente estandar = TipoCliente.ESTANDAR;
+        /*TipoCliente estandar = TipoCliente.ESTANDAR;
         TipoCliente premium = TipoCliente.PREMIUM;
         controlador.agregarCliente("Daniel Freijó", "Barcelona 1", "1111", "dani@mail.com", estandar, 0.0f, null);
         controlador.agregarCliente("Andrés Romero", "Zaragoza 1", "2222", "andres@mail.com", premium, 0.4f, 10.99f);
         controlador.agregarCliente("Moisés Molina", "Burgos 1", "3333", "moises@mail.com", estandar, 0.0f, null);
         controlador.agregarCliente("Roger Gallofré", "Falsa 4", "4444", "roger@mail.com", premium, 0.4f, 10.99f);
         controlador.agregarCliente("Cristina Romero", "Lopez 1", "5555", "cristina@mail.com", estandar, 0.0f, null);
-
-        EstadoPedido enviado = EstadoPedido.ENVIADO;
+        */
+       /* EstadoPedido enviado = EstadoPedido.ENVIADO;
         EstadoPedido pendiente = EstadoPedido.PENDIENTE;
         controlador.agregarPedido(1, "5555", "1", 4, "28/10/2023 06:05:15", enviado);
         controlador.agregarPedido(2, "4444", "2", 2, "29/10/2023 18:05:35", pendiente);
         controlador.agregarPedido(3, "3333","3", 8,"27/10/2023 21:05:15", enviado);
         controlador.agregarPedido(4, "2222", "4", 5,"30/10/2023 12:05:15", pendiente);
-        controlador.agregarPedido(5, "1111", "5", 4, "29/10/2023 19:05:15", enviado);
+        controlador.agregarPedido(5, "1111", "5", 4, "29/10/2023 19:05:15", enviado);*/
     }
 
     /**
