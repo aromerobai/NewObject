@@ -21,6 +21,6 @@ public class DAOException extends Exception{
         super(message, cause, enableSuppression, writableStackTrace);
     }
     public String getError() {
-        return "Ha habido un error con la Base de Datos.";
+        return "Este elemento no existe en el sistema.";
     }
 }

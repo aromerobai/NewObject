@@ -203,7 +203,7 @@ public class Vista {
         } catch (DAOException e) {
             System.out.println(e.getError());
         } catch (java.sql.SQLException e) {
-            System.out.println("El articulo no existe");
+            System.out.println("Error accediendo a la base de datos");
         }
     }
 
@@ -319,7 +319,7 @@ public class Vista {
         } catch (DAOException e) {
             System.out.println(e.getError());
         } catch (java.sql.SQLException e) {
-            System.out.println("El Cliente no existe");
+            System.out.println("Error accediendo a la base de datos");
         }
     }
 

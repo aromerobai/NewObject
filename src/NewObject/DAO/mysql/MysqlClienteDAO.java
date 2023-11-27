@@ -29,13 +29,12 @@ public class MysqlClienteDAO implements ClienteDAO {
 
             TipoCliente tipoCliente = cliente.getTipo();
 
-            if (tipoCliente.toString().equals("ESTANDAR")) {
+            if (tipoCliente == TipoCliente.ESTANDAR) {
                 if (cliente instanceof Estandar) {
-                    System.out.println("Tipo cliente 1: " + ((Estandar) cliente).getDescuento());
                     stat.setFloat(6, ((Estandar) cliente).getDescuento());
                     stat.setFloat(7, 0.0f);
                 }
-            } else if (tipoCliente.toString().equals("PREMIUM")) {
+            } else if (tipoCliente == TipoCliente.PREMIUM) {
                 if (cliente instanceof Premium) {
                     stat.setFloat(6,((Premium) cliente).getDescuento());
                     stat.setFloat(7, ((Premium) cliente).getCuota());
