@@ -272,7 +272,7 @@ public class Vista {
                 System.out.println("- Inserta el tipo de descuento para cliente estándar");
                 Float descuento = Float.valueOf(input.nextLine());
 
-                controlador.agregarCliente(nombre, domicilio, nif, email, tipo, descuento, null);
+                controlador.agregarCliente(nif, nombre, domicilio, email, tipo, descuento, null);
 
             } else if (tipoStr.equals("PREMIUM")) {
                 tipo = TipoCliente.PREMIUM;
@@ -283,7 +283,7 @@ public class Vista {
                 System.out.println("- Inserta la cuota MENSUAL para cliente premium");
                 Float cuota = Float.valueOf(input.nextLine());
 
-                controlador.agregarCliente(nombre, domicilio, nif, email, tipo, desc, cuota);
+                controlador.agregarCliente(nif, nombre, domicilio, email, tipo, desc, cuota);
 
             } else {
                 System.out.println("Tipo de cliente no válido.");
@@ -319,7 +319,7 @@ public class Vista {
         } catch (DAOException e) {
             System.out.println(e.getError());
         } catch (java.sql.SQLException e) {
-            System.out.println("El articulo no existe");
+            System.out.println("El Cliente no existe");
         }
     }
 

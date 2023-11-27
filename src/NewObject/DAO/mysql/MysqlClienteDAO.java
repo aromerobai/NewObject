@@ -15,8 +15,8 @@ public class MysqlClienteDAO implements ClienteDAO {
 
     private ConexionDB conexionDB = new ConexionDB();
     private Connection conn;
-    final String INSERT = "INSERT INTO cliente(nombre, domicilio, nif, email, tipo, descuento, cuota)";
-    final String SELECTBYNIF = "SELECT nombre, domicilio, nif, email, tipo, descuento, cuota FROM cliente WHERE nif = ?";
+    final String INSERT = "INSERT INTO cliente(nif, nombre, domicilio, email, tipo, descuento, cuota) VALUES(?,?,?,?,?,?,?)";
+    final String SELECTBYNIF = "SELECT nif, nombre, domicilio, email, tipo, descuento, cuota FROM cliente WHERE nif = ?";
     final String EXISTE = "SELECT 1 FROM cliente WHERE nif = ?";
 
     public MysqlClienteDAO(){
@@ -26,9 +26,9 @@ public class MysqlClienteDAO implements ClienteDAO {
     @Override
     public void insertar(Cliente cliente) throws DAOException, SQLException {
         try(PreparedStatement stat = conn.prepareStatement(INSERT)) {
-            stat.setString(1, cliente.getNombre());
-            stat.setString(2, cliente.getDomicilio());
-            stat.setString(3, cliente.getNif());
+            stat.setString(1, cliente.getNif());
+            stat.setString(2, cliente.getNombre());
+            stat.setString(3, cliente.getDomicilio());
             stat.setString(4, cliente.getEmail());
             stat.setString(5, cliente.tipoCliente());
 
@@ -92,19 +92,19 @@ public class MysqlClienteDAO implements ClienteDAO {
     }
 
     private Cliente convertir(ResultSet rs) throws SQLException {
+        String nif = rs.getString("nif");
         String nombre = rs.getString("nombre");
         String domicilio = rs.getString("domicilio");
-        String nif = rs.getString("nif");
         String email = rs.getString("email");
         String tipoCliente = rs.getString("tipoCliente");
         Float descuento = rs.getFloat("descuento");
         Float cuota = rs.getFloat("cuota");
 
         Cliente cliente = null;
-        if (tipoCliente.equals(TipoCliente.ESTANDAR.toString())) {
-            cliente =  new Estandar(nombre, domicilio, nif, email, TipoCliente.ESTANDAR, descuento);
-        } else if (tipoCliente.equals(TipoCliente.PREMIUM.toString())) {
-            cliente = new Premium(nombre, domicilio, nif, email, TipoCliente.PREMIUM, descuento, cuota);
+        if (TipoCliente.ESTANDAR.name().equals(tipoCliente))  {
+            cliente =  new Estandar(nif, nombre, domicilio, email, TipoCliente.ESTANDAR, descuento);
+        } else if (TipoCliente.PREMIUM.name().equals(tipoCliente)){
+            cliente = new Premium(nif, nombre, domicilio,  email, TipoCliente.PREMIUM, descuento, cuota);
         }
 
         return cliente;

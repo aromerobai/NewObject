@@ -80,7 +80,13 @@ public class Datos {
      * @param cuota     La cuota mensual (solo para clientes PREMIUM).
      */
     public void agregarCliente(String nombre, String domicilio, String nif, String email, TipoCliente tipo, Float descuento, Float cuota) throws DAOException, SQLException {
-        clientes.agregarCliente(nombre, domicilio, nif, email, tipo, descuento, cuota);
+        Cliente cliente = null;
+        if (tipo == TipoCliente.PREMIUM) {
+            cliente = new Premium(nif, nombre, domicilio,  email, tipo, descuento, cuota);
+        } else {
+            cliente = new Estandar(nif, nombre, domicilio, email, tipo, descuento);
+        }
+        clienteDAO.insertar(cliente);
     }
 
     /**
