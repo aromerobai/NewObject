@@ -4,27 +4,28 @@ import NewObject.Controlador.ConexionDB;
 import NewObject.DAO.ArticuloDAO;
 import NewObject.DAO.ClienteDAO;
 import NewObject.DAO.DAOFactory;
+import NewObject.DAO.PedidoDAO;
 import NewObject.DAO.mysql.MysqlDAOFactory;
+import NewObject.Excepciones.CliArtNoExisteException;
 import NewObject.Excepciones.DAOException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 
+
 /**
  * Clase que representa el modelo de datos de una tienda en línea.
  */
 public class Datos {
-
+    private ConexionDB conexionDB = new ConexionDB();
+    public static Connection conexionMain;
     DAOFactory mysqlFactory;
     ArticuloDAO articuloDAO;
     ClienteDAO clienteDAO;
-    private ListaArticulo articulos;
-    private ListaPedido pedidos;
-    private ListaCliente clientes;
+    PedidoDAO pedidoDAO;
 
-    private ConexionDB conexionDB = new ConexionDB();
-    public static Connection conexionMain;
+
     /**
      * Constructor por defecto de Datos.
      */
@@ -33,9 +34,7 @@ public class Datos {
         mysqlFactory = new MysqlDAOFactory();
         articuloDAO = mysqlFactory.getArticuloDAO();
         clienteDAO = mysqlFactory.getClienteDAO();
-        this.articulos = new ListaArticulo();
-        this.pedidos = new ListaPedido();
-        this.clientes = new ListaCliente();
+        pedidoDAO = mysqlFactory.getPedidoDAO();
     }
 
     /**
@@ -126,26 +125,21 @@ public class Datos {
      * @param fecha   La fecha en que se realiza el pedido.
      * @param estado  El estado del pedido (ENVIADO o PENDIENTE).
      */
-    public void agregarPedido(int id,  String cliente, String articulo, int cantidad, String fecha, EstadoPedido estado) {
-        Cliente cli = null;
-        for (Cliente clientePedido : clientes.clientes) {
-            if (clientePedido.getNif().equals(cliente)) {
-                cli = clientePedido;
-            }
-        }
 
+    public void agregarPedido(int id,  String cliente, String articulo, int cantidad, String fecha, EstadoPedido estado) throws DAOException, SQLException, CliArtNoExisteException {
+        Cliente cli = null;
         Articulo art = null;
-        for (Articulo articuloPedido : articulos.articulos) {
-            if (articuloPedido.getCodigo().equals(articulo)) {
-                art = articuloPedido;
-            }
-        }
+
+        cli = clienteDAO.listarUno(cliente);
+        art = articuloDAO.listarUno(articulo);
+
         if (cli == null){
-            System.out.println("No existe el cliente seleccionado");
+            throw new CliArtNoExisteException();
         }else if (art == null){
-            System.out.println("No existe el articulo seleccionado");
+            throw new CliArtNoExisteException();
         }else{
-            pedidos.agregarPedido(id, cantidad, cli, art, fecha, estado);
+            Pedido newPedido = new Pedido(id, cli, art, cantidad, fecha, estado);
+            pedidoDAO.insertar(newPedido);
         }
     }
 
@@ -154,8 +148,8 @@ public class Datos {
      *
      * @return La lista de pedidos.
      */
-    public String getPedido(int id) {
-        String pedido = pedidos.getPedidos(id);
+    public String getPedido(int id) throws DAOException, SQLException {
+        String pedido = pedidoDAO.listarUno(String.valueOf(id)).toString();
         return pedido;
     }
 
@@ -164,8 +158,8 @@ public class Datos {
      *
      * @return Una cadena que contiene información sobre los pedidos pendientes.
      */
-    public String getPedidoPend(){
-        String pedido = pedidos.getPedidosPend();
+    public String getPedidoPend() throws DAOException, SQLException {
+        String pedido = pedidoDAO.listarTodosEstado("PENDIENTE");
         return pedido;
     }
 
@@ -174,8 +168,8 @@ public class Datos {
      *
      * @return Una cadena que contiene información sobre los pedidos enviados.
      */
-    public String getPedidoEnvi(){
-        String pedido = pedidos.getPedidosEnvi();
+    public String getPedidoEnvi() throws DAOException, SQLException {
+        String pedido = pedidoDAO.listarTodosEstado("ENVIADO");
         return pedido;
     }
 
@@ -185,8 +179,17 @@ public class Datos {
      * @param id El ID del pedido a borrar.
      */
     public boolean borrarPedido(Integer id) {
-        boolean exito = pedidos.borrarPedido(id);
-        return exito;
+        boolean exito = true;
+        try {
+            pedidoDAO.eliminar(String.valueOf(id));
+            return exito;
+        } catch (DAOException e) {
+            exito = false;
+            return exito;
+        } catch (SQLException e) {
+            exito = false;
+            return exito;
+        }
     }
 
 
@@ -196,7 +199,8 @@ public class Datos {
      * @param num El número de pedido a verificar.
      * @return true si el pedido con el número dado existe en el modelo de datos, false en caso contrario.
      */
-    public boolean existePedido(int num) {
-        return pedidos.compruebaExistenciaPedido(num);
+    public boolean existePedido(int num) throws SQLException {
+        Boolean existe = pedidoDAO.existe(String.valueOf(num));
+        return existe;
     }
 }

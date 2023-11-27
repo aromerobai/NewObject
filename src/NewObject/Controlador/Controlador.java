@@ -1,6 +1,7 @@
 package NewObject.Controlador;
 
 
+import NewObject.Excepciones.CliArtNoExisteException;
 import NewObject.Excepciones.DAOException;
 import NewObject.Modelo.Datos;
 import NewObject.Modelo.EstadoPedido;
@@ -108,7 +109,7 @@ public class Controlador {
      * @param fecha   La fecha en que se realiza el pedido.
      * @param estado  El estado del pedido (ENVIADO o PENDIENTE).
      */
-    public void agregarPedido(int id, String cliente, String articulo, int cantidad, String fecha, EstadoPedido estado){
+    public void agregarPedido(int id, String cliente, String articulo, int cantidad, String fecha, EstadoPedido estado) throws DAOException, SQLException, CliArtNoExisteException {
         datos.agregarPedido(id, cliente, articulo, cantidad, fecha, estado);
     }
 
@@ -118,7 +119,7 @@ public class Controlador {
      * @param id El ID del pedido que se desea mostrar.
      * @return Una cadena de texto con la información del pedido.
      */
-    public String mostrarPedido(int id){
+    public String mostrarPedido(int id) throws DAOException, SQLException {
         String pedido = datos.getPedido(id);
         return pedido;
     }
@@ -128,7 +129,7 @@ public class Controlador {
      *
      * @return Una cadena de texto con la información de los pedidos pendientes.
      */
-    public String mostrarPedidoPend(){
+    public String mostrarPedidoPend() throws DAOException, SQLException {
         String pedido = datos.getPedidoPend();
         return pedido;
     }
@@ -138,7 +139,7 @@ public class Controlador {
      *
      * @return Una cadena de texto con la información de los pedidos enviados.
      */
-    public String mostrarPedidoEnvi(){
+    public String mostrarPedidoEnvi() throws DAOException, SQLException {
         String pedido = datos.getPedidoEnvi();
         return pedido;
     }
@@ -159,7 +160,7 @@ public class Controlador {
      * @param id El ID del pedido a verificar.
      * @return true si el pedido con el ID dado existe en el modelo de datos, false en caso contrario.
      */
-    public boolean pedidoExiste(int id) {
+    public boolean pedidoExiste(int id) throws SQLException {
         return datos.existePedido(id);
     }
 
