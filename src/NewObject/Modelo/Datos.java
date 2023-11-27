@@ -6,6 +6,7 @@ import NewObject.DAO.ClienteDAO;
 import NewObject.DAO.DAOFactory;
 import NewObject.DAO.PedidoDAO;
 import NewObject.DAO.mysql.MysqlDAOFactory;
+import NewObject.Excepciones.CliArtNoExisteException;
 import NewObject.Excepciones.DAOException;
 
 import java.sql.Connection;
@@ -23,24 +24,17 @@ public class Datos {
     ArticuloDAO articuloDAO;
     ClienteDAO clienteDAO;
     PedidoDAO pedidoDAO;
-    private ListaArticulo articulos;
-    private ListaPedido pedidos;
-    private ListaCliente clientes;
+
 
     /**
      * Constructor por defecto de Datos.
      */
     public Datos() {
-
         conexionMain = conexionDB.getConnection();
         mysqlFactory = new MysqlDAOFactory();
         articuloDAO = mysqlFactory.getArticuloDAO();
         clienteDAO = mysqlFactory.getClienteDAO();
         pedidoDAO = mysqlFactory.getPedidoDAO();
-
-        this.articulos = new ListaArticulo();
-        this.pedidos = new ListaPedido();
-        this.clientes = new ListaCliente();
     }
 
     /**
@@ -132,7 +126,7 @@ public class Datos {
      * @param estado  El estado del pedido (ENVIADO o PENDIENTE).
      */
 
-    public void agregarPedido(int id,  String cliente, String articulo, int cantidad, String fecha, EstadoPedido estado) throws DAOException, SQLException {
+    public void agregarPedido(int id,  String cliente, String articulo, int cantidad, String fecha, EstadoPedido estado) throws DAOException, SQLException, CliArtNoExisteException {
         Cliente cli = null;
         Articulo art = null;
 
@@ -140,9 +134,9 @@ public class Datos {
         art = articuloDAO.listarUno(articulo);
 
         if (cli == null){
-            System.out.println("No existe el cliente seleccionado");
+            throw new CliArtNoExisteException();
         }else if (art == null){
-            System.out.println("No existe el articulo seleccionado");
+            throw new CliArtNoExisteException();
         }else{
             Pedido newPedido = new Pedido(id, cli, art, cantidad, fecha, estado);
             pedidoDAO.insertar(newPedido);
@@ -205,7 +199,8 @@ public class Datos {
      * @param num El número de pedido a verificar.
      * @return true si el pedido con el número dado existe en el modelo de datos, false en caso contrario.
      */
-    public boolean existePedido(int num) {
-        return pedidos.compruebaExistenciaPedido(num);
+    public boolean existePedido(int num) throws SQLException {
+        Boolean existe = pedidoDAO.existe(String.valueOf(num));
+        return existe;
     }
 }

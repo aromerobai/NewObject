@@ -144,12 +144,9 @@ public class Vista {
         }
         catch (ElementoExistente e) {
             System.out.println(e.getMessage());
-        } catch (DAOException e) {
-            System.out.println(e.getError());
-        } catch (java.sql.SQLException e) {
-            System.out.println("Error accediendo a la base de datos");
+        } catch (DAOException | SQLException e) {
+            System.out.println("Error insertando Articulo.");
         }
-
     }
 
     /**
@@ -170,10 +167,8 @@ public class Vista {
             }
         } catch (ElementoNoExistente e) {
             System.out.println("Error: " + e.getMessage());
-        } catch (DAOException e) {
-            System.out.println(e.getError());
-        } catch (java.sql.SQLException e) {
-            System.out.println("El articulo no existe");
+        } catch (DAOException | SQLException e) {
+            System.out.println("El Articulo no existe o se a producido un error leyendo Articulo");
         }
     }
 
@@ -261,10 +256,8 @@ public class Vista {
         }
         catch (ElementoExistente e) {
             System.out.println(e.getMessage());
-        } catch (DAOException e) {
-            System.out.println(e.getError());
-        } catch (java.sql.SQLException e) {
-            System.out.println("Error accediendo a la base de datos");
+        } catch (DAOException | SQLException e) {
+            System.out.println("Error insertando Cliente");
         }
     }
 
@@ -286,10 +279,8 @@ public class Vista {
             }
         } catch (ElementoNoExistente e) {
             System.out.println("Error: " + e.getMessage());
-        } catch (DAOException e) {
-            System.out.println(e.getError());
-        } catch (java.sql.SQLException e) {
-            System.out.println("El Cliente no existe");
+        } catch (DAOException | SQLException e) {
+            System.out.println("El cliente no existe o se a producido un error mostrando Cliente");
         }
     }
 
@@ -410,10 +401,10 @@ public class Vista {
             }
         } catch (ElementoExistente e){
             System.out.println(e.getMessage());
-        } catch (DAOException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (DAOException | SQLException e) {
+            System.out.println("Error insertando Pedido");
+        } catch (CliArtNoExisteException e) {
+            System.out.println("Error:" + e.getMessage());
         }
     }
 
@@ -454,10 +445,8 @@ public class Vista {
             }
         } catch (ElementoNoExistente e){
             System.out.println("Error: " + e.getMessage());
-        } catch (DAOException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (DAOException | SQLException e) {
+            System.out.println("El pedido no exite o ha habido un error mostrando Pedido por ID");
         }
     }
 
@@ -469,10 +458,8 @@ public class Vista {
         String pedido = null;
         try {
             pedido = controlador.mostrarPedidoPend();
-        } catch (DAOException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (DAOException | SQLException e) {
+            System.out.println("Error mostrando Pedidos Pendientes");
         }
 
         if (pedido != null){
@@ -489,10 +476,8 @@ public class Vista {
         String pedido = null;
         try {
             pedido = controlador.mostrarPedidoEnvi();
-        } catch (DAOException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (DAOException | SQLException e) {
+            System.out.println("Error mostrando Pedidos Enviados");
         }
 
         if (pedido != null){

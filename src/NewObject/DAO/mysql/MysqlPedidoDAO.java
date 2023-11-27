@@ -29,6 +29,7 @@ public class MysqlPedidoDAO implements PedidoDAO {
     final String SELECTBYID = "SELECT * FROM pedido WHERE idPedido = ?";
     final String SELECTPENDIENTES = "SELECT * FROM pedido WHERE estado = ?";
     final String DELETE = "DELETE FROM pedido WHERE idPedido = ?";
+    final String EXISTE = "SELECT 1 FROM pedido WHERE idPedido = ?";
 
     @Override
     public void insertar(Pedido pedido) throws DAOException, SQLException {
@@ -107,8 +108,13 @@ public class MysqlPedidoDAO implements PedidoDAO {
         return todosLosPedido;
     }
     @Override
-    public boolean existe(String s) throws SQLException {
-        return false;
+    public boolean existe(String idPedido) throws SQLException {
+        try(PreparedStatement stat = Datos.conexionMain.prepareStatement(EXISTE)) {
+            stat.setString(1, idPedido);
+            try (ResultSet rs = stat.executeQuery()) {
+                return rs.next();
+            }
+        }
     }
 
 
