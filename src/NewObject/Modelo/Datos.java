@@ -1,11 +1,13 @@
 package NewObject.Modelo;
 
+import NewObject.Controlador.ConexionDB;
 import NewObject.DAO.ArticuloDAO;
 import NewObject.DAO.ClienteDAO;
 import NewObject.DAO.DAOFactory;
 import NewObject.DAO.mysql.MysqlDAOFactory;
 import NewObject.Excepciones.DAOException;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 
@@ -21,10 +23,13 @@ public class Datos {
     private ListaPedido pedidos;
     private ListaCliente clientes;
 
+    private ConexionDB conexionDB = new ConexionDB();
+    public static Connection conexionMain;
     /**
      * Constructor por defecto de Datos.
      */
     public Datos() {
+        conexionMain = conexionDB.getConnection();
         mysqlFactory = new MysqlDAOFactory();
         articuloDAO = mysqlFactory.getArticuloDAO();
         clienteDAO = mysqlFactory.getClienteDAO();

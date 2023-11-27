@@ -4,6 +4,7 @@ import NewObject.Controlador.ConexionDB;
 import NewObject.DAO.ArticuloDAO;
 import NewObject.Excepciones.DAOException;
 import NewObject.Modelo.Articulo;
+import NewObject.Modelo.Datos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,18 +13,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class MysqlArticuloDAO implements ArticuloDAO {
-    private ConexionDB conexionDB = new ConexionDB();
-    private Connection conn;
+
     final String INSERT = "INSERT INTO articulo(codigo, descripcion, precio, gastoEnvio, preparacion) VALUES(?,?,?,?,?)";
     final String SELECTBYCODIGO = "SELECT codigo, descripcion, precio, gastoEnvio, preparacion FROM articulo WHERE codigo = ?";
     final String EXISTE = "SELECT 1 FROM articulo WHERE codigo = ?";
 
-    public MysqlArticuloDAO(){
-        conn = conexionDB.getConnection();
-    }
     @Override
     public void insertar(Articulo articulo) throws DAOException, SQLException {
-        try(PreparedStatement stat = conn.prepareStatement(INSERT)) {
+        try(PreparedStatement stat = Datos.conexionMain.prepareStatement(INSERT)) {
             stat.setString(1, articulo.getCodigo());
             stat.setString(2, articulo.getDescripcion());
             stat.setFloat(3, articulo.getPrecio());
@@ -55,7 +52,7 @@ public class MysqlArticuloDAO implements ArticuloDAO {
     @Override
     public Articulo listarUno(String codigo) throws DAOException, SQLException {
         Articulo articulo = null;
-            try(PreparedStatement stat = conn.prepareStatement(SELECTBYCODIGO)) {
+            try(PreparedStatement stat = Datos.conexionMain.prepareStatement(SELECTBYCODIGO)) {
                 stat.setString(1, codigo);
                 try(ResultSet rs = stat.executeQuery()) {
                     if (rs.next()) {
@@ -70,7 +67,7 @@ public class MysqlArticuloDAO implements ArticuloDAO {
 
     @Override
     public boolean existe(String codigo) throws SQLException {
-        try(PreparedStatement stat = conn.prepareStatement(EXISTE)) {
+        try(PreparedStatement stat = Datos.conexionMain.prepareStatement(EXISTE)) {
             stat.setString(1, codigo);
             try (ResultSet rs = stat.executeQuery()) {
                 return rs.next();

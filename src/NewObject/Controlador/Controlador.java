@@ -70,7 +70,7 @@ public class Controlador {
      * @param descuento El descuento aplicable al cliente (solo para clientes PREMIUM).
      * @param cuota     La cuota mensual (solo para clientes PREMIUM).
      */
-    public void agregarCliente(String nif, String nombre, String domicilio,  String email, TipoCliente tipo, Float descuento, Float cuota) throws DAOException, SQLException{
+    public void agregarCliente(String nombre, String domicilio, String nif,  String email, TipoCliente tipo, Float descuento, Float cuota) throws DAOException, SQLException{
         if (tipo == TipoCliente.PREMIUM) {
             datos.agregarCliente(nif, nombre, domicilio,  email, tipo, descuento, cuota);
         } else {

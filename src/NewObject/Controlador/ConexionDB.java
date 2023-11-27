@@ -8,7 +8,7 @@ public class ConexionDB {
 
     private static final String URL = "jdbc:mysql://localhost:3306/mydb";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "270920Irene";
+    private static final String PASSWORD = "root";
 
     private Connection connection;
 
@@ -16,7 +16,6 @@ public class ConexionDB {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            System.out.println("Conexión establecida con la base de datos.");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -30,7 +29,6 @@ public class ConexionDB {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                System.out.println("Conexión cerrada.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
