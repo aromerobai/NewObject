@@ -1,6 +1,7 @@
 
 package NewObject.Vista;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,41 +20,10 @@ public class Vista {
     Controlador controlador = new Controlador();
     Scanner input = new Scanner(System.in);
 
-    private ConexionDB conexionDB;
-
-    /**
-     * Carga datos de ejemplo en el controlador para inicializar el sistema.
-     * Agrega artículos, clientes y pedidos de muestra.
-     */
-    public void  cargarDatos(){
-        /*controlador.agregarArticulo("1", "Sistema refrigeración", 89.50f, 7.99f, 24);
-        controlador.agregarArticulo("2", "Monitor", 109.22f, 7.99f, 48);
-        controlador.agregarArticulo("3", "Memoria Ram 8gb", 47.25f, 20.50f, 40);
-        controlador.agregarArticulo("4", "Disco duro 500gb", 68.99f, 12.99f, 50);
-        controlador.agregarArticulo("5", "Ratón cableado", 18.55f, 4.45f, 24);*/
-
-        /*TipoCliente estandar = TipoCliente.ESTANDAR;
-        TipoCliente premium = TipoCliente.PREMIUM;
-        controlador.agregarCliente("Daniel Freijó", "Barcelona 1", "1111", "dani@mail.com", estandar, 0.0f, null);
-        controlador.agregarCliente("Andrés Romero", "Zaragoza 1", "2222", "andres@mail.com", premium, 0.4f, 10.99f);
-        controlador.agregarCliente("Moisés Molina", "Burgos 1", "3333", "moises@mail.com", estandar, 0.0f, null);
-        controlador.agregarCliente("Roger Gallofré", "Falsa 4", "4444", "roger@mail.com", premium, 0.4f, 10.99f);
-        controlador.agregarCliente("Cristina Romero", "Lopez 1", "5555", "cristina@mail.com", estandar, 0.0f, null);
-        */
-       /* EstadoPedido enviado = EstadoPedido.ENVIADO;
-        EstadoPedido pendiente = EstadoPedido.PENDIENTE;
-        controlador.agregarPedido(1, "5555", "1", 4, "28/10/2023 06:05:15", enviado);
-        controlador.agregarPedido(2, "4444", "2", 2, "29/10/2023 18:05:35", pendiente);
-        controlador.agregarPedido(3, "3333","3", 8,"27/10/2023 21:05:15", enviado);
-        controlador.agregarPedido(4, "2222", "4", 5,"30/10/2023 12:05:15", pendiente);
-        controlador.agregarPedido(5, "1111", "5", 4, "29/10/2023 19:05:15", enviado);*/
-    }
-
     /**
      * Constructor de la vista.
      */
     public Vista() {
-        cargarDatos();
     }
 
     /**
@@ -440,6 +410,10 @@ public class Vista {
             }
         } catch (ElementoExistente e){
             System.out.println(e.getMessage());
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -480,6 +454,10 @@ public class Vista {
             }
         } catch (ElementoNoExistente e){
             System.out.println("Error: " + e.getMessage());
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -487,8 +465,15 @@ public class Vista {
      * Muestra la información de los pedidos con estado "PENDIENTE".
      * Obtiene y muestra los detalles de los pedidos pendientes.
      */
-    private void mostrarPedidoPen(){
-        String pedido = controlador.mostrarPedidoPend();
+    private void mostrarPedidoPen()  {
+        String pedido = null;
+        try {
+            pedido = controlador.mostrarPedidoPend();
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         if (pedido != null){
             String info = pedido.toString();
@@ -501,7 +486,14 @@ public class Vista {
      * Obtiene y muestra los detalles de los pedidos enviados.
      */
     private void mostrarPedidoEnv(){
-        String pedido = controlador.mostrarPedidoEnvi();
+        String pedido = null;
+        try {
+            pedido = controlador.mostrarPedidoEnvi();
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         if (pedido != null){
             String info = pedido.toString();

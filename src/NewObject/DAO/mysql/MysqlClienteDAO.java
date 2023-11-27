@@ -54,7 +54,7 @@ public class MysqlClienteDAO implements ClienteDAO {
     }
 
     @Override
-    public void eliminar(Cliente cliente) throws DAOException, SQLException {
+    public void eliminar(String idCliente) throws DAOException, SQLException {
 
     }
 
@@ -69,7 +69,6 @@ public class MysqlClienteDAO implements ClienteDAO {
         try(PreparedStatement stat = Datos.conexionMain.prepareStatement(SELECTBYNIF)) {
             stat.setString(1, nif);
             try(ResultSet rs = stat.executeQuery()) {
-
                 if (rs.next()) {
                     cliente = convertir(rs);
                 } else {

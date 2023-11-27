@@ -40,7 +40,7 @@ public class MysqlArticuloDAO implements ArticuloDAO {
     }
 
     @Override
-    public void eliminar(Articulo articulo) throws DAOException, SQLException {
+    public void eliminar(String idArticulo) throws DAOException, SQLException {
 
     }
 

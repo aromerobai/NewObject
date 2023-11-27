@@ -11,7 +11,7 @@ public interface DAO <T, K> {
 
     void modificar(T t) throws DAOException, SQLException;
 
-    void eliminar(T t) throws DAOException, SQLException;
+    void eliminar(K k) throws DAOException, SQLException;
 
     List<T> listarTodos() throws DAOException, SQLException;
 
