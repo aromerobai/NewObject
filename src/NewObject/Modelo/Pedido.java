@@ -154,14 +154,14 @@ public class Pedido {
     @Override
     public String toString() {
         return "Pedido{\n" +
-                "id= " + id +
-                ", fecha= " + fecha + "\n" +
-                ", cliente= " + cliente.getNombre() + ", nif: " + cliente.getNif() + "\n" +
-                ", articulo= id: " + articulo.getCodigo() + " descripción: " + articulo.getDescripcion() + " precio unidad: " + articulo.getPrecio() + " €\n" +
-                ", cantidad= " + cantidad +
-                ", coste envío= " + precioEnvio() + " €\n" +
-                ", precio total= " + precioTotal(getCantidad(), articulo.getPrecio(), precioEnvio()) + " €\n" +
-                ", estado= "  + estado +
+                "ID= " + id +
+                "Fecha= " + fecha + "\n" +
+                "Cliente= " + cliente.getNombre() + ", nif: " + cliente.getNif() + "\n" +
+                "Articulo= id: " + articulo.getCodigo() + ", descripción: " + articulo.getDescripcion() + ", precio unidad: " + String.format("%.2f",articulo.getPrecio()) + " €\n" +
+                "Cantidad= " + cantidad + "\n" +
+                "Coste envío= " + String.format("%.2f",precioEnvio()) + " €\n" +
+                "Precio total= " + String.format("%.2f", precioTotal(getCantidad(), articulo.getPrecio(), precioEnvio())) + " €\n" +
+                "Estado= "  + estado +
                 " }\n" + "======================================================================================================================\n";
     }
 

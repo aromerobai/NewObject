@@ -1,23 +1,29 @@
 package NewObject.DAO.mysql;
 
-import NewObject.Controlador.ConexionDB;
+
 import NewObject.DAO.ClienteDAO;
 import NewObject.Excepciones.DAOException;
 import NewObject.Modelo.*;
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Implementación concreta de ClienteDAO para manejar clientes en una base de datos MySQL.
+ */
 public class MysqlClienteDAO implements ClienteDAO {
-
-
     final String INSERT = "INSERT INTO cliente(nif, nombre, domicilio, email, tipo, descuento, cuota) VALUES(?,?,?,?,?,?,?)";
     final String SELECTBYNIF = "SELECT nif, nombre, domicilio, email, tipo, descuento, cuota FROM cliente WHERE nif = ?";
     final String EXISTE = "SELECT 1 FROM cliente WHERE nif = ?";
 
+    /**
+     * Inserta un nuevo cliente en la base de datos.
+     *
+     * @param cliente El cliente a insertar.
+     * @throws DAOException Si ocurre un error relacionado con el DAO.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public void insertar(Cliente cliente) throws DAOException, SQLException {
         try(PreparedStatement stat = Datos.conexionMain.prepareStatement(INSERT)) {
@@ -62,6 +68,14 @@ public class MysqlClienteDAO implements ClienteDAO {
         return null;
     }
 
+    /**
+     * Obtiene un cliente de la base de datos por su número de identificación fiscal (NIF).
+     *
+     * @param nif El número de identificación fiscal del cliente a obtener.
+     * @return El cliente encontrado.
+     * @throws DAOException Si ocurre un error relacionado con el DAO.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public Cliente listarUno(String nif) throws DAOException, SQLException {
         Cliente cliente = null;
@@ -78,6 +92,13 @@ public class MysqlClienteDAO implements ClienteDAO {
         return cliente;
     }
 
+    /**
+     * Verifica si un cliente existe en la base de datos por su número de identificación fiscal (NIF).
+     *
+     * @param nif El número de identificación fiscal del cliente a verificar.
+     * @return True si el cliente existe, de lo contrario False.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public boolean existe(String nif) throws SQLException {
         try(PreparedStatement stat = Datos.conexionMain.prepareStatement(EXISTE)) {
@@ -88,6 +109,13 @@ public class MysqlClienteDAO implements ClienteDAO {
         }
     }
 
+    /**
+     * Convierte un ResultSet en un objeto de tipo Cliente.
+     *
+     * @param rs El ResultSet que contiene los datos del cliente.
+     * @return El cliente convertido desde el ResultSet.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     private Cliente convertir(ResultSet rs) throws SQLException {
         String nif = rs.getString("nif");
         String nombre = rs.getString("nombre");

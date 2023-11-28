@@ -95,8 +95,8 @@ public class Premium extends Cliente {
     @Override
     public String toString() {
         return super.toString() +
-                ", tipo= " + tipoCliente() +
-                ", descuento= " + descuentoEnv() +
-                ", cuota=" + calcAnual() + "€/año }\n" + "======================================================================================================================\n";
+                "Tipo= " + tipoCliente() + " €\n" +
+                "Descuento= " + descuentoEnv() + " €\n" +
+                "Cuota=" + calcAnual() + "€/año }\n" + "======================================================================================================================\n";
     }
 }

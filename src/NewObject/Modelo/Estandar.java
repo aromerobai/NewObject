@@ -73,7 +73,7 @@ public class Estandar extends Cliente {
     @Override
     public String toString() {
         return super.toString() +
-                ", tipo= " + tipoCliente() +
-                ", descuento=" + descuentoEnv() + " }\n" + "======================================================================================================================\n";
+                "Tipo= " + tipoCliente() + "\n" +
+                "Descuento=" + descuentoEnv() + " €" +" }\n" + "======================================================================================================================\n";
     }
 }

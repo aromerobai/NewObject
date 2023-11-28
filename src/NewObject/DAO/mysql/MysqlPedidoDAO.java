@@ -15,11 +15,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Implementación concreta de PedidoDAO para manejar pedidos en una base de datos MySQL.
+ */
 public class MysqlPedidoDAO implements PedidoDAO {
     DAOFactory mysqlFactory;
     ArticuloDAO articuloDAO;
     ClienteDAO clienteDAO;
 
+    /**
+     * Constructor que inicializa instancias de los DAO relacionados para manejar pedidos.
+     */
     public MysqlPedidoDAO(){
         mysqlFactory = new MysqlDAOFactory();
         articuloDAO = mysqlFactory.getArticuloDAO();
@@ -31,6 +37,13 @@ public class MysqlPedidoDAO implements PedidoDAO {
     final String DELETE = "DELETE FROM pedido WHERE idPedido = ?";
     final String EXISTE = "SELECT 1 FROM pedido WHERE idPedido = ?";
 
+    /**
+     * Inserta un pedido en la base de datos.
+     *
+     * @param pedido El pedido a insertar.
+     * @throws DAOException Si ocurre un error relacionado con el DAO.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public void insertar(Pedido pedido) throws DAOException, SQLException {
         try(PreparedStatement stat = Datos.conexionMain.prepareStatement(INSERT)) {
@@ -61,6 +74,13 @@ public class MysqlPedidoDAO implements PedidoDAO {
 
     }
 
+    /**
+     * Elimina un pedido de la base de datos por su identificador.
+     *
+     * @param idPedido El identificador del pedido a eliminar.
+     * @throws DAOException Si ocurre un error relacionado con el DAO.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public void eliminar(String idPedido) throws DAOException, SQLException {
         try (PreparedStatement stat = Datos.conexionMain.prepareStatement(DELETE)) {
@@ -71,12 +91,19 @@ public class MysqlPedidoDAO implements PedidoDAO {
         }
     }
 
-
     @Override
     public List<Pedido> listarTodos() throws DAOException, SQLException {
         return null;
     }
 
+    /**
+     * Obtiene un pedido de la base de datos por su identificador.
+     *
+     * @param id El identificador del pedido.
+     * @return El pedido obtenido.
+     * @throws DAOException Si ocurre un error relacionado con el DAO.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public Pedido listarUno(String id) throws DAOException, SQLException {
         Pedido pedido = null;
@@ -93,6 +120,14 @@ public class MysqlPedidoDAO implements PedidoDAO {
         return pedido;
     }
 
+    /**
+     * Obtiene todos los pedidos con un estado específico.
+     *
+     * @param tipo El estado de los pedidos a obtener.
+     * @return Una representación en texto de los pedidos con el estado especificado.
+     * @throws DAOException Si ocurre un error relacionado con el DAO.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public String listarTodosEstado(String tipo) throws DAOException, SQLException {
         String todosLosPedido = "";
@@ -107,6 +142,14 @@ public class MysqlPedidoDAO implements PedidoDAO {
         }
         return todosLosPedido;
     }
+
+    /**
+     * Verifica si un pedido existe en la base de datos por su identificador.
+     *
+     * @param idPedido El identificador del pedido a verificar.
+     * @return True si el pedido existe, de lo contrario False.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public boolean existe(String idPedido) throws SQLException {
         try(PreparedStatement stat = Datos.conexionMain.prepareStatement(EXISTE)) {
@@ -117,7 +160,14 @@ public class MysqlPedidoDAO implements PedidoDAO {
         }
     }
 
-
+    /**
+     * Convierte un ResultSet en un objeto Pedido.
+     *
+     * @param rs El ResultSet que contiene los datos del pedido.
+     * @return El objeto Pedido obtenido del ResultSet.
+     * @throws SQLException   Si ocurre un error de SQL.
+     * @throws DAOException   Si ocurre un error relacionado con el DAO.
+     */
     private Pedido convertir(ResultSet rs) throws SQLException, DAOException {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

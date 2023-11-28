@@ -1,12 +1,9 @@
 package NewObject.DAO.mysql;
 
-import NewObject.Controlador.ConexionDB;
 import NewObject.DAO.ArticuloDAO;
 import NewObject.Excepciones.DAOException;
 import NewObject.Modelo.Articulo;
 import NewObject.Modelo.Datos;
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +15,13 @@ public class MysqlArticuloDAO implements ArticuloDAO {
     final String SELECTBYCODIGO = "SELECT codigo, descripcion, precio, gastoEnvio, preparacion FROM articulo WHERE codigo = ?";
     final String EXISTE = "SELECT 1 FROM articulo WHERE codigo = ?";
 
+    /**
+     * Inserta un nuevo artículo en la base de datos.
+     *
+     * @param articulo El artículo a insertar.
+     * @throws DAOException Si ocurre un error relacionado con el DAO.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public void insertar(Articulo articulo) throws DAOException, SQLException {
         try(PreparedStatement stat = Datos.conexionMain.prepareStatement(INSERT)) {
@@ -49,6 +53,14 @@ public class MysqlArticuloDAO implements ArticuloDAO {
         return null;
     }
 
+    /**
+     * Obtiene un artículo de la base de datos por su código.
+     *
+     * @param codigo El código del artículo a obtener.
+     * @return El artículo encontrado.
+     * @throws DAOException Si ocurre un error relacionado con el DAO.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public Articulo listarUno(String codigo) throws DAOException, SQLException {
         Articulo articulo = null;
@@ -65,6 +77,13 @@ public class MysqlArticuloDAO implements ArticuloDAO {
         return articulo;
     }
 
+    /**
+     * Verifica si un artículo existe en la base de datos por su código.
+     *
+     * @param codigo El código del artículo a verificar.
+     * @return True si el artículo existe, de lo contrario False.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     @Override
     public boolean existe(String codigo) throws SQLException {
         try(PreparedStatement stat = Datos.conexionMain.prepareStatement(EXISTE)) {
@@ -75,6 +94,13 @@ public class MysqlArticuloDAO implements ArticuloDAO {
         }
     }
 
+    /**
+     * Convierte un ResultSet en un objeto de tipo Artículo.
+     *
+     * @param rs El ResultSet que contiene los datos del artículo.
+     * @return El artículo convertido desde el ResultSet.
+     * @throws SQLException Si ocurre un error de SQL.
+     */
     private Articulo convertir(ResultSet rs) throws SQLException {
         String codigo = rs.getString("codigo");
         String descripcion = rs.getString("descripcion");

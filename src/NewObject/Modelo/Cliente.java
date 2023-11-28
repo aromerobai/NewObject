@@ -145,10 +145,10 @@ public  abstract class Cliente {
      */
     @Override
     public String toString() {
-        return "Cliente{ \n" +
-                "nombre= " + nombre +
-                ", domicilio= " + domicilio +
-                ", nif= " + nif +
-                ", email= " + email ;
+        return "Cliente{ \n" + "\n" +
+                "Nombre= " + nombre  + "\n" +
+                "Domicilio= " + domicilio + "\n" +
+                "Nif= " + nif + "\n" +
+                "Email= " + email + "\n";
     }
 }
