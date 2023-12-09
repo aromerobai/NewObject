@@ -1,11 +1,8 @@
 package Modelo;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 public class Datos {
-    ListaArticulo articulos = new ListaArticulo();
-    ListaPedido pedidos = new ListaPedido();
-    ListaCliente clientes = new ListaCliente();
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     EntityTransaction transaction = entityManager.getTransaction();
@@ -16,9 +13,9 @@ public class Datos {
     public String getArticulo(String codigo){
         try {
             transaction.begin();
-            TypedQuery<ArticuloEntity> query = entityManager.createNamedQuery("Articulo.ByCodigo", ArticuloEntity.class);
+            TypedQuery<Articulo> query = entityManager.createNamedQuery("Articulo.byCodigo", Articulo.class);
             query.setParameter(1, codigo);
-            ArticuloEntity articulo = query.getSingleResult();
+            Articulo articulo = query.getSingleResult();
             transaction.commit();
             return  articulo.toString();
         } finally {
@@ -47,17 +44,15 @@ public class Datos {
     }
 
     public void agregarPedido(Pedido pedido){}
-    public ListaPedido getPedido(){return pedidos;}
     public void borrarPedido(Integer id){}
 
 
     public void agregarCliente(Cliente cliente){}
-    public ListaCliente mostrarCliente(){return clientes;}
 
     public void agregarArticulo(String codigo, String descripcion, Float precio, Float gastoEnvio, int preparacion) {
         try {
             transaction.begin();
-            ArticuloEntity articulo = new ArticuloEntity();
+            Articulo articulo = new Articulo();
             articulo.setCodigo(codigo);
             articulo.setPrecio(precio);
             articulo.setDescripcion(descripcion);
@@ -72,15 +67,5 @@ public class Datos {
             entityManager.close();
             entityManagerFactory.close();
         }
-    }
-
-
-    @Override
-    public String toString() {
-        return "Datos{" +
-                "articulos=" + articulos +
-                ", pedidos=" + pedidos +
-                ", clientes=" + clientes +
-                '}';
     }
 }

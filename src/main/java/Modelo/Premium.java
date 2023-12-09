@@ -8,7 +8,7 @@ public class Premium extends Cliente{
         //Donde se incializa la clase Premium.
     }
 
-    public Float getDescuento() {
+    public float getDescuento() {
         return descuento;
     }
 
@@ -16,7 +16,7 @@ public class Premium extends Cliente{
         this.descuento = descuento;
     }
 
-    public Float getCuota() {
+    public float getCuota() {
         return cuota;
     }
 
@@ -29,11 +29,7 @@ public class Premium extends Cliente{
         return "Premium{" +
                 "descuento=" + descuento +
                 ", cuota=" + cuota +
-                ", nombre='" + nombre + '\'' +
-                ", domicilio='" + domicilio + '\'' +
-                ", nif='" + nif + '\'' +
-                ", email='" + email + '\'' +
-                ", tipo=" + tipo +
+                ", " + super.toString() +
                 '}';
     }
 }

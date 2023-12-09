@@ -8,7 +8,7 @@ public class Estandar extends Cliente{
         //Donde se incializa la clase Estandar.
     }
 
-    public Float getDescuento() {
+    public float getDescuento() {
         return descuento;
     }
 
@@ -20,11 +20,7 @@ public class Estandar extends Cliente{
     public String toString() {
         return "Estandar{" +
                 "descuento=" + descuento +
-                ", nombre='" + nombre + '\'' +
-                ", domicilio='" + domicilio + '\'' +
-                ", nif='" + nif + '\'' +
-                ", email='" + email + '\'' +
-                ", tipo=" + tipo +
+                ", " + super.toString() +
                 '}';
     }
 }

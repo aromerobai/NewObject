@@ -1,6 +1,6 @@
 package Controlador;
 
-import Modelo.*;
+import Modelo.Datos;
 import Vista.Vista;
 
 public class Controlador {
@@ -22,18 +22,7 @@ public class Controlador {
         String articulo = datos.getArticulo(codigo);
         return articulo;
     }
-    public void agregarCliente(Cliente cliente){}
 
-    public ListaCliente mostrarCliente(){
-        //En el futuro devolvera un objeto ListaCliente
-        return null;
-    }
-
-    public void agregarPedido(Pedido pedido){}
-    public ListaPedido mostrarPedido(String nif,EstadoPedido estadoPedido){
-        //En el futuro devolvera un objeto ListaPedido
-        return null;
-    }
     public void borrarPedido(Integer id){}
 
     @Override
