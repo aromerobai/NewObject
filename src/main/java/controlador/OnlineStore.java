@@ -9,7 +9,7 @@ public class OnlineStore {
     /**
      * Método de inicio de la aplicación que crea una instancia de Online store y la inicia.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws Exception {
         OnlineStore onlineStore = new OnlineStore();
         onlineStore.iniciar();
     }
@@ -17,7 +17,7 @@ public class OnlineStore {
     /**
      * Inicia Online store a través del controlador.
      */
-    void iniciar()  {
+    void iniciar() throws Exception {
         controlador.start();
     }
 }

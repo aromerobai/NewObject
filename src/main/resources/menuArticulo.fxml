@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.VistaGestionArticulo">
+   <children>
+      <Label layoutX="114.0" layoutY="30.0" text="Gestión de articulos">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </Label>
+      <Button id="anadirArticulo" layoutX="187.0" layoutY="110.0" mnemonicParsing="false" onAction="#cambiarMostrarArticulo" text="Añadir articulo">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Button>
+      <Button id="buscarArticulo" layoutX="187.0" layoutY="191.0" mnemonicParsing="false" onAction="#cambiarAnadirArticulo" text="Buscar articulo">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Button>
+      <Button id="articuloVolver" layoutX="242.0" layoutY="268.0" mnemonicParsing="false" onAction="#cambiarMenuPrincipal" prefHeight="50.0" prefWidth="118.0" text="Volver">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

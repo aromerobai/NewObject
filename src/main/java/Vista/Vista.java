@@ -7,6 +7,11 @@ import java.time.ZoneOffset;
 
 import controlador.Controlador;
 import excepciones.*;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.sql.Date;
 import java.util.Scanner;
@@ -14,7 +19,7 @@ import java.util.Scanner;
 /**
  * Clase que representa la vista de una tienda en línea.
  */
-public class Vista {
+public class Vista extends Application {
 
     Controlador controlador = new Controlador();
     Scanner input = new Scanner(System.in);
@@ -25,11 +30,27 @@ public class Vista {
     public Vista() {
     }
 
+    @Override
+    public void start(Stage stage) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/principal.fxml"));
+            stage.setTitle("OnlineStore");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
     /**
      * Método principal que muestra el menú y permite interactuar con el Controlador.
      */
-    public void menu() {
+
+    public void menu() throws Exception {
         boolean salir = false;
+        launch();
         char opcion;
 
         do {

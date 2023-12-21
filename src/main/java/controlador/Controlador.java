@@ -20,7 +20,7 @@ public class Controlador {
     /**
      * Inicia la aplicación creando una instancia de la Vista y mostrando el menú principal.
      */
-    public void start() {
+    public void start() throws Exception {
         this.vista = new Vista();
         vista.menu();
     }
