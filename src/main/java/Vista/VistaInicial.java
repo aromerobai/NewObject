@@ -1,5 +1,6 @@
 package Vista;
 
+import controlador.Controlador;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,9 +14,20 @@ public class VistaInicial {
     private Scene scene;
     private Stage stage;
     private Parent root;
+    private Controlador controlador;
 
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
+        System.out.println("El controlador es" + controlador.toString());
+    }
     public void cambiarMenuPrincipal(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/menuPrincipal.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/menuPrincipal.fxml"));
+        root = loader.load();
+
+        VistaMenuPrincipal VistaMenuPrincipalCotrolador = loader.getController();
+        VistaMenuPrincipalCotrolador.setControlador(controlador);
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

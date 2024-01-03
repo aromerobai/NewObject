@@ -1,5 +1,6 @@
 package Vista;
 
+import controlador.Controlador;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,9 +14,20 @@ public class VistaMenuPrincipal {
     private Scene scene;
     private Stage stage;
     private Parent root;
+    private Controlador controlador;
 
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
+        System.out.println("El controlador es" + controlador.toString());
+    }
     public void cambiarMenuCliente(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/menuCliente.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/menuCliente.fxml"));
+        root = loader.load();
+
+        VistaGestionCliente VistaGestionClienteControlador = loader.getController();
+        VistaGestionClienteControlador.setControlador(controlador);
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -23,7 +35,13 @@ public class VistaMenuPrincipal {
 
     }
     public void cambiarMenuArticulo(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/menuArticulo.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/menuArticulo.fxml"));
+        root = loader.load();
+
+        VistaGestionArticulo VistaGestionArticuloControlador = loader.getController();
+        VistaGestionArticuloControlador.setControlador(controlador);
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -31,7 +49,13 @@ public class VistaMenuPrincipal {
 
     }
     public void cambiarMenuPedido(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/menuPedido.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/menuPedido.fxml"));
+        root = loader.load();
+
+        VistaGestionPedido VistaGestionPedidoControlador = loader.getController();
+        VistaGestionPedidoControlador.setControlador(controlador);
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

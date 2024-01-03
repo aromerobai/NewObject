@@ -33,7 +33,13 @@ public class Vista extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/principal.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/principal.fxml"));
+            Parent root = loader.load();
+
+            VistaInicial vistaInicialControlador = loader.getController();
+            vistaInicialControlador.setControlador(controlador);
+
             stage.setTitle("OnlineStore");
             stage.setScene(new Scene(root));
             stage.show();
