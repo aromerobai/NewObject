@@ -33,12 +33,15 @@ public class Vista extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/principal.fxml"));
-            Scene scene = new Scene(root);
-            // Aplica el estilo CSS a la escena
-            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/principal.fxml"));
+            Parent root = loader.load();
+
+            VistaInicial vistaInicialControlador = loader.getController();
+            vistaInicialControlador.setControlador(controlador);
+
             stage.setTitle("OnlineStore");
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
             stage.show();
         }
         catch (Exception e){
@@ -46,9 +49,11 @@ public class Vista extends Application {
         }
     }
 
+
     /**
      * Método principal que muestra el menú y permite interactuar con el Controlador.
      */
+
     public void menu() throws Exception {
         boolean salir = false;
         launch();

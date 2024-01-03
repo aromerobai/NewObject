@@ -144,6 +144,6 @@ public class Cliente {
                 ", tipo=" + tipo +
                 ", descuento=" + descuento +
                 ", cuota=" + cuota +
-                '}';
+                "} \n";
     }
 }
