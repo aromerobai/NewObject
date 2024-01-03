@@ -18,6 +18,7 @@ public class VistaMenuPrincipal {
         root = FXMLLoader.load(getClass().getResource("/menuCliente.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 
@@ -26,6 +27,7 @@ public class VistaMenuPrincipal {
         root = FXMLLoader.load(getClass().getResource("/menuArticulo.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 
@@ -34,6 +36,7 @@ public class VistaMenuPrincipal {
         root = FXMLLoader.load(getClass().getResource("/menuPedido.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 
@@ -42,6 +45,7 @@ public class VistaMenuPrincipal {
         root = FXMLLoader.load(getClass().getResource("/principal.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 

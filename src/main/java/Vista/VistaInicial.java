@@ -18,6 +18,7 @@ public class VistaInicial {
         root = FXMLLoader.load(getClass().getResource("/menuPrincipal.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 

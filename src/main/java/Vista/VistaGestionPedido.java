@@ -18,6 +18,7 @@ public class VistaGestionPedido {
         root = FXMLLoader.load(getClass().getResource("/listarPedido.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 
@@ -26,6 +27,7 @@ public class VistaGestionPedido {
         root = FXMLLoader.load(getClass().getResource("/eliminarPedido.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 
@@ -36,6 +38,7 @@ public class VistaGestionPedido {
         root = FXMLLoader.load(getClass().getResource("/anadirPedido.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 
@@ -44,6 +47,7 @@ public class VistaGestionPedido {
         root = FXMLLoader.load(getClass().getResource("/menuPrincipal.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 
