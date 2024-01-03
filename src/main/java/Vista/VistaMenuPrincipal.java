@@ -63,7 +63,13 @@ public class VistaMenuPrincipal {
 
     }
     public void cambiarMenuInicial(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/principal.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/principal.fxml"));
+        root = loader.load();
+
+        VistaInicial VistaInicialControlador = loader.getController();
+        VistaInicialControlador.setControlador(controlador);
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

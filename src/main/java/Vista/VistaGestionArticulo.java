@@ -39,7 +39,12 @@ public class VistaGestionArticulo {
 
 
     public void cambiarMenuPrincipal(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/menuPrincipal.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/menuPrincipal.fxml"));
+        root = loader.load();
+
+        VistaMenuPrincipal VistaMenuPrincipalControlador = loader.getController();
+        VistaMenuPrincipalControlador.setControlador(controlador);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

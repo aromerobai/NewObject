@@ -36,10 +36,14 @@ public class VistaGestionPedido {
         stage.show();
 
     }
-
-
     public void cambiarAnadirPedido(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/anadirPedido.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/anadirPedido.fxml"));
+        root = loader.load();
+
+        VistaAnadirPedido vistaAnadirPedidoControlador = loader.getController();
+        vistaAnadirPedidoControlador.setControlador(controlador);
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -47,13 +51,17 @@ public class VistaGestionPedido {
 
     }
     public void cambiarMenuPrincipal(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/menuPrincipal.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/menuPrincipal.fxml"));
+        root = loader.load();
+
+        VistaMenuPrincipal VistaMenuPrincipalControlador = loader.getController();
+        VistaMenuPrincipalControlador.setControlador(controlador);
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
     }
-
-
 }
