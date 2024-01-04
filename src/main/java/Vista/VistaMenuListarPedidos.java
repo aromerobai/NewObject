@@ -1,32 +1,31 @@
 package Vista;
 
 import controlador.Controlador;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javafx.event.ActionEvent;
 import java.io.IOException;
 
-public class VistaGestionPedido {
+public class VistaMenuListarPedidos {
     private Scene scene;
     private Stage stage;
     private Parent root;
     private Controlador controlador;
-
     public void setControlador(Controlador controlador) {
         this.controlador = controlador;
         System.out.println("El controlador es" + controlador.toString());
     }
-    public void cambiarListarPedido(ActionEvent event) throws IOException {
+    public void mostrarPedidoId(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/mostrarPedido.fxml"));
+        loader.setLocation(getClass().getResource("/mostrarPedidoID.fxml"));
         root = loader.load();
 
-        VistaMenuListarPedidos VistaMenuListarPedidosControlador = loader.getController();
-        VistaMenuListarPedidosControlador.setControlador(controlador);
+        VistaMostrarPedidoID VistaMostrarPedidoIDControlador = loader.getController();
+        VistaMostrarPedidoIDControlador.setControlador(controlador);
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -34,13 +33,13 @@ public class VistaGestionPedido {
         stage.show();
 
     }
-    public void cambiarEliminarPedido(ActionEvent event) throws IOException {
+    public void mostrarPedidoPendiente(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/eliminarPedido.fxml"));
+        loader.setLocation(getClass().getResource("/mostrarPedidosPendientes.fxml"));
         root = loader.load();
 
-        VistaEliminarPedido VistaEliminarPedidoControlador = loader.getController();
-        VistaEliminarPedidoControlador.setControlador(controlador);
+        VistaMostrarPedidoPendiente VistaMostrarPedidoPendienteControlador = loader.getController();
+        VistaMostrarPedidoPendienteControlador.setControlador(controlador);
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -48,13 +47,13 @@ public class VistaGestionPedido {
         stage.show();
 
     }
-    public void cambiarAnadirPedido(ActionEvent event) throws IOException {
+    public void mostrarPedidoEnviado(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/anadirPedido.fxml"));
+        loader.setLocation(getClass().getResource("/mostrarPedidosEnviados.fxml"));
         root = loader.load();
 
-        VistaAnadirPedido vistaAnadirPedidoControlador = loader.getController();
-        vistaAnadirPedidoControlador.setControlador(controlador);
+        VistaMostrarPedidoEnviados VistaMostrarPedidoEnviadosoControlador = loader.getController();
+        VistaMostrarPedidoEnviadosoControlador.setControlador(controlador);
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -64,11 +63,11 @@ public class VistaGestionPedido {
     }
     public void cambiarMenuPrincipal(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/menuPrincipal.fxml"));
+        loader.setLocation(getClass().getResource("/menuPedido.fxml"));
         root = loader.load();
 
-        VistaMenuPrincipal VistaMenuPrincipalControlador = loader.getController();
-        VistaMenuPrincipalControlador.setControlador(controlador);
+        VistaGestionPedido VistaGestionPedidoControlador = loader.getController();
+        VistaGestionPedidoControlador.setControlador(controlador);
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

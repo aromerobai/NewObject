@@ -23,9 +23,14 @@
       <TextField fx:id="id_articulo" layoutX="133.0" layoutY="175.0" prefHeight="26.0" prefWidth="376.0" />
       <TextField fx:id="cantidad" layoutX="133.0" layoutY="212.0" prefHeight="26.0" prefWidth="376.0" />
       <ChoiceBox fx:id="estadoChoiceBox" layoutX="133.0" layoutY="250.0" prefHeight="26.0" prefWidth="292.0" />
-      <Button layoutX="254.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleAnadirPedido" text="Añadir">
+      <Button layoutX="214.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleAnadirPedido" text="Añadir">
          <font>
             <Font size="18.0" />
+         </font>
+      </Button>
+      <Button id="pedidoVolver" layoutX="344.0" layoutY="301.0" mnemonicParsing="false" onAction="#cambiarMenuPrincipal" prefHeight="47.0" prefWidth="126.0" text="Volver">
+         <font>
+            <Font size="17.0" />
          </font>
       </Button>
    </children>
