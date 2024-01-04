@@ -24,22 +24,23 @@ public class VistaGestionCliente {
         root = FXMLLoader.load(getClass().getResource("/menuBuscarCliente.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
-
     }
     public void cambiarAnadirCliente(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/menuAnadirCliente.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/anadirCliente.fxml"));
+        root = loader.load();
+
+        VistaGestionArticulo VistaGestionArticuloControlador = loader.getController();
+        VistaGestionArticuloControlador.setControlador(controlador);
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 
     }
-
-
     public void cambiarMenuPrincipal(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/menuPrincipal.fxml"));
@@ -50,7 +51,6 @@ public class VistaGestionCliente {
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene.getRoot().setStyle("-fx-background-color: #FFEACE;");
         stage.setScene(scene);
         stage.show();
 
