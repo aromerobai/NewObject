@@ -15,7 +15,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class VistaMostrarPedidoEnviados {
+public class
+VistaMostrarPedidoEnviados {
     private Scene scene;
     private Stage stage;
     private Parent root;
@@ -34,7 +35,7 @@ public class VistaMostrarPedidoEnviados {
 
         } catch (DAOException | SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error en la Lectura de datos");
+            alert.setTitle("Error");
             alert.setHeaderText("Error en la Lectura de datos");
             alert.setContentText("Error en la Lectura de datos.");
 
@@ -42,7 +43,7 @@ public class VistaMostrarPedidoEnviados {
         }
 
         if (pedido != null){
-            String[] pedidos = pedido.split("Pedido\\{");
+            String[] pedidos = pedido.split("INFO PEDIDO \n");
 
             for (int i = 1; i < pedidos.length; i++) { // Comienza en 1 porque el primer elemento estará vacío
                 String sinLlave1 = pedidos[i].replace("}","");

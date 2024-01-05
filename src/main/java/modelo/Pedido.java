@@ -131,13 +131,13 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" +
-                "idPedido='" + idPedido + '\'' +
-                ", cantidad=" + cantidad +
-                ", fecha=" + fecha +
-                ", estado='" + estado + '\'' +
-                ", articuloByIdArticulo=" + articuloByIdArticulo +
-                ", clienteByClienteNif=" + clienteByClienteNif +
-                '}';
+        return  "INFO PEDIDO \n" +
+                "ID_Pedido = " + idPedido + ",\n" +
+                "Cantidad = " + cantidad + ",\n" +
+                "Fecha = " + fecha + ",\n" +
+                "Estado='" + estado + ",\n" +
+                articuloByIdArticulo +
+                clienteByClienteNif ;
+
     }
 }

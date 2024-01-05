@@ -136,14 +136,12 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "nif='" + nif + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", domicilio='" + domicilio + '\'' +
-                ", email='" + email + '\'' +
-                ", tipo=" + tipo +
-                ", descuento=" + descuento +
-                ", cuota=" + cuota +
-                "} \n";
+        return  "Nif = " + nif  + ",\n" +
+                "Nombre = " + nombre + ",\n" +
+                "Domicilio = " + domicilio + ",\n" +
+                "Email = " + email + ",\n" +
+                "TipoCliente = " + tipo + ",\n" +
+                "Descuento = " + descuento + "€,\n" +
+                "Cuota = " + cuota + "€,\n" ;
     }
 }

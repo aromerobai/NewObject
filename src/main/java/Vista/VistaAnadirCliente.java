@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -53,8 +54,19 @@ public class VistaAnadirCliente {
         try{
             controlador.agregarCliente(dni, nom, dom, mail, tC, Float.parseFloat(desc), Float.parseFloat(cuot));
         }catch(Exception e){
-
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error en la Insercion de Datos");
+            alert.setContentText("Error en la Insercion de Datos. Compruebe los datos ingresados.");
+            alert.showAndWait();
         }
+        nombre.clear();
+        domicilio.clear();
+        nif.clear();
+        email.clear();
+        tipoCliente.setValue("ESTANDAR");
+        descuento.clear();
+        cuota.clear();
     }
     public void cambiarMenuCliente(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();

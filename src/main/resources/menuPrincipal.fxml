@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -7,11 +8,14 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #FFEACE;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.VistaMenuPrincipal">
    <children>
-      <VBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="612.0" prefWidth="694.0" spacing="30" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="500.0" prefWidth="700.0" spacing="30" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <Label layoutX="152.0" layoutY="21.0" prefHeight="59.0" prefWidth="296.0" text="MENÚ PRINCIPAL" textAlignment="CENTER">
          <font>
             <Font name="Calibri" size="40.0" />
          </font>
+            <VBox.margin>
+               <Insets bottom="30.0" />
+            </VBox.margin>
       </Label>
       <Button id="menu_articulo" layoutX="196.0" layoutY="117.0" mnemonicParsing="false" onAction="#cambiarMenuArticulo" prefHeight="57.0" prefWidth="208.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #868686; -fx-border-radius: 5;" text="Menú Artículo">
          <font>

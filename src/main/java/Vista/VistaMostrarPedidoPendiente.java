@@ -43,7 +43,7 @@ public class VistaMostrarPedidoPendiente {
         }
 
         if (pedido != null){
-            String[] pedidos = pedido.split("Pedido\\{");
+            String[] pedidos = pedido.split("INFO PEDIDO \n");
             for (int i = 1; i < pedidos.length; i++) { // Comienza en 1 porque el primer elemento estará vacío
                 String sinLlave1 = pedidos[i].replace("}","");
                 String sinLlave2 = sinLlave1.replace("{", "");

@@ -21,8 +21,14 @@ public class VistaGestionCliente {
         System.out.println("El controlador es" + controlador.toString());
     }
     public void cambiarBuscarCliente(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/menuBuscarCliente.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/buscarCliente.fxml"));
+        root = loader.load();
+
+        VistaMostrarCliente VistaMostrarClienteControlador = loader.getController();
+        VistaMostrarClienteControlador.setControlador(controlador);
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
