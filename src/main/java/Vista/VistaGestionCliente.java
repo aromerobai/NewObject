@@ -32,14 +32,13 @@ public class VistaGestionCliente {
         loader.setLocation(getClass().getResource("/anadirCliente.fxml"));
         root = loader.load();
 
-        VistaGestionArticulo VistaGestionArticuloControlador = loader.getController();
-        VistaGestionArticuloControlador.setControlador(controlador);
+        VistaAnadirCliente VistaAnadirClienteControlador = loader.getController();
+        VistaAnadirClienteControlador.setControlador(controlador);
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
     public void cambiarMenuPrincipal(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();

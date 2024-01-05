@@ -40,7 +40,6 @@ public class VistaAnadirPedido {
     @FXML
     public void initialize() {
         estadoChoiceBox.getItems().addAll("PENDIENTE", "ENVIADO");
-        // Puedes establecer un valor predeterminado si lo deseas
         estadoChoiceBox.setValue("PENDIENTE");
     }
     @FXML

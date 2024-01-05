@@ -49,11 +49,9 @@ public class Vista extends Application {
         }
     }
 
-
     /**
      * Método principal que muestra el menú y permite interactuar con el Controlador.
      */
-
     public void menu() throws Exception {
         boolean salir = false;
         launch();
@@ -230,7 +228,6 @@ public class Vista extends Application {
         } while (!volver);
     }
 
-
     private String menuTipoCliente() {
         char opcion;
         String tipo = "ESTANDAR";
@@ -278,6 +275,7 @@ public class Vista extends Application {
         }
         return tipo;
     }
+
     /**
      * Lee la información de un cliente desde la entrada estándar y lo agrega al sistema.
      */
@@ -396,8 +394,6 @@ public class Vista extends Application {
         }
     }
 
-
-
     private void mostrarClientesEstandar() {
         String tipo = null;
         try {
@@ -411,7 +407,6 @@ public class Vista extends Application {
             System.out.println(info);
         }
     }
-
 
 
     /**
