@@ -37,12 +37,15 @@ public class VistaMostrarPedidoID {
 
         try{
             String pedido = controlador.mostrarPedido(idPedidoHandle);
-            textArea.setText(pedido);
+            String sinLlave1 = pedido.replace("}","");
+            String sinLlave2 = sinLlave1.replace("{", "");
+            String sinComas = sinLlave2.replace(",", "");
+            textArea.setText(sinComas);
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error en la Insercion de Datos");
-            alert.setHeaderText("Error en la Insercion de Datos");
-            alert.setContentText("Error en la Insercion de Datos.");
+            alert.setTitle("Error en la Insercion de Dato");
+            alert.setHeaderText("Error en la Insercion de Dato");
+            alert.setContentText("Error en la Insercion de Dato.");
 
             alert.showAndWait();
         }

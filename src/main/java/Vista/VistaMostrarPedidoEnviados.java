@@ -34,17 +34,21 @@ public class VistaMostrarPedidoEnviados {
 
         } catch (DAOException | SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error en la Insercion de Datos");
-            alert.setHeaderText("Error en la Insercion de Datos");
-            alert.setContentText("Error en la Insercion de Datos.");
+            alert.setTitle("Error en la Lectura de datos");
+            alert.setHeaderText("Error en la Lectura de datos");
+            alert.setContentText("Error en la Lectura de datos.");
 
             alert.showAndWait();
         }
 
         if (pedido != null){
             String[] pedidos = pedido.split("Pedido\\{");
+
             for (int i = 1; i < pedidos.length; i++) { // Comienza en 1 porque el primer elemento estará vacío
-                listView.getItems().add(pedidos[i]);
+                String sinLlave1 = pedidos[i].replace("}","");
+                String sinLlave2 = sinLlave1.replace("{", "");
+                String sinComas = sinLlave2.replace(",", "");
+                listView.getItems().add(sinComas);
             }
         }
     }

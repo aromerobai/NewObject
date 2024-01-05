@@ -38,9 +38,9 @@ public class VistaEliminarPedido {
             controlador.borrarPedido(idPedidoHandle);
         }catch (DAOException | SQLException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error en la Insercion de Datos");
-            alert.setHeaderText("Error en la Insercion de Datos");
-            alert.setContentText("Error en la Insercion de Datos.");
+            alert.setTitle("Error eliminando Datos");
+            alert.setHeaderText("Error eliminando Datos");
+            alert.setContentText("Error eliminando Datos.");
 
             alert.showAndWait();
         }
