@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Vista.VistaAnadirPedido" prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.VistaEliminarPedido">
+   <children>
+      <Label layoutX="214.0" layoutY="35.0" text="Eliminar Pedido">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+       <Label layoutX="64.0" layoutY="121.0" prefHeight="18.0" prefWidth="90.0" text="ID del Pedido" />
+       <TextField fx:id="id_pedido" layoutX="165.0" layoutY="117.0" prefHeight="26.0" prefWidth="376.0" />
+       <Button layoutX="201.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleEliminarPedido" text="Eliminar">
+           <font>
+               <Font size="18.0" />
+           </font>
+       </Button>
+       <Button id="pedidoVolver" layoutX="326.0" layoutY="306.0" mnemonicParsing="false" onAction="#cambiarMenuPrincipal" prefHeight="36.0" prefWidth="89.0" text="Volver">
+           <font>
+               <Font size="17.0" />
+           </font>
+       </Button>
+   </children>
 </AnchorPane>

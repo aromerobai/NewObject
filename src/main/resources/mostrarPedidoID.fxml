@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.VistaMostrarPedidoID">
+   <children>
+      <Label layoutX="203.0" layoutY="39.0" text="Mostrar Pedido ID">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+       <Label layoutX="65.0" layoutY="78.0" prefHeight="18.0" prefWidth="90.0" text="ID del Pedido" />
+       <TextField fx:id="id_pedido" layoutX="164.0" layoutY="74.0" prefHeight="26.0" prefWidth="376.0" />
+       <TextArea fx:id="textArea" layoutX="48.0" layoutY="112.0" prefHeight="169.0" prefWidth="503.0" />
+
+       <Button layoutX="214.0" layoutY="305.0" mnemonicParsing="false" onAction="#mostrarPedidoID" text="Mostrar">
+           <font>
+               <Font size="18.0" />
+           </font>
+       </Button>
+       <Button id="pedidoVolver" layoutX="326.0" layoutY="306.0" mnemonicParsing="false" onAction="#cambiarMenuPrincipal" prefHeight="36.0" prefWidth="89.0" text="Volver">
+           <font>
+               <Font size="17.0" />
+           </font>
+       </Button>
+
+
+   </children>
+</AnchorPane>
