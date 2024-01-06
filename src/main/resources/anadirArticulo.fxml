@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="AnadirArticulo"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.VistaAnadirArticulo">
+    <children>
+        <Label layoutX="214.0" layoutY="30.0" text="Añadir Articulo" textAlignment="CENTER">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <Label layoutX="73.0" layoutY="111.0" prefHeight="18.0" prefWidth="59.0" text="Código" />
+        <Label layoutX="72.0" layoutY="155.0" text="Descripción" />
+        <Label layoutX="73.0" layoutY="203.0" text="Precio" />
+        <Label layoutX="73.0" layoutY="247.0" text="Gastos de Envío" />
+        <Label layoutX="71.0" layoutY="291.0" text="Tiempo de Preparación" />
 
+        <TextField fx:id="codigo" layoutX="285.0" layoutY="107.0" prefHeight="26.0" prefWidth="292.0" />
+        <TextField fx:id="descripcion" layoutX="285.0" layoutY="150.0" prefHeight="26.0" prefWidth="292.0" />
+        <TextField fx:id="precio" layoutX="285.0" layoutY="198.0" prefHeight="26.0" prefWidth="292.0" />
+        <TextField fx:id="gastosEnvio" layoutX="285.0" layoutY="242.0" prefHeight="26.0" prefWidth="292.0" />
+        <TextField fx:id="tiempoPreparacion" layoutX="285.0" layoutY="286.0" prefHeight="26.0" prefWidth="292.0" />
+        <Button layoutX="156.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleAnadirArticulo" text="Añadir">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Button>
+        <Button id="volver" layoutX="395.0" layoutY="331.0" mnemonicParsing="false" onAction="#cambiarMenuPrincipal" text="Volver">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Button>
+    </children>
 </AnchorPane>
