@@ -28,13 +28,17 @@ public class VistaGestionArticulo {
         stage.show();
 
     }
+
     public void cambiarAnadirArticulo(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/anadirArticulo.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/anadirArticulo.fxml"));
+        root = loader.load();
+        VistaAnadirArticulo vistaAnadirArticuloControlador = loader.getController();
+        vistaAnadirArticuloControlador.setControlador(controlador);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
 
 

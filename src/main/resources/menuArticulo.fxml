@@ -5,20 +5,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.VistaGestionArticulo">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.VistaGestionArticulo">
    <children>
       <Label layoutX="114.0" layoutY="30.0" text="Gestión de articulos">
          <font>
             <Font size="45.0" />
          </font>
       </Label>
-      <Button id="anadirArticulo" layoutX="187.0" layoutY="110.0" mnemonicParsing="false" onAction="#cambiarMostrarArticulo" text="Añadir articulo">
+      <Button id="anadirArticulo" layoutX="187.0" layoutY="110.0" mnemonicParsing="false" onAction="#cambiarMostrarArticulo" text="Buscar articulo">
          <font>
             <Font size="29.0" />
          </font>
       </Button>
-      <Button id="buscarArticulo" layoutX="187.0" layoutY="191.0" mnemonicParsing="false" onAction="#cambiarAnadirArticulo" text="Buscar articulo">
+      <Button id="buscarArticulo" layoutX="187.0" layoutY="191.0" mnemonicParsing="false" onAction="#cambiarAnadirArticulo" text="Añadir articulo">
          <font>
             <Font size="29.0" />
          </font>
