@@ -30,40 +30,34 @@ public class VistaMostrarArticulo {
         this.controlador = controlador;
         System.out.println("El controlador es" + controlador.toString());
     }
-/*
-    @FXML
+
     public void mostrarArticuloCodigo(ActionEvent event) {
         String codigoHandle = codigo.getText();
 
         try {
-            String articulo = controlador.mostrarArticuloCodigo(codigoHandle);
+            String articulo = controlador.mostrarArticulo(codigoHandle);
+            String sinComas = articulo.replace(",", "");
+            textArea.setText(sinComas);
 
-            if (articulo != null) {
-                String art = articulo.toString();
-                String sinLlaves = art.replace("{", "").replace("}", "");
-                String sinComas = sinLlaves.replace(",", "");
-                textArea.setText(sinComas);
-            } else {
-                throw new ElementoNoExistente();
-            }
-        } catch (ElementoNoExistente e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error en la Inserción de Dato");
-            alert.setHeaderText("Error en la Inserción de Dato");
-            alert.setContentText("Error en la Inserción de Dato.");
+            alert.setTitle("Error");
+            alert.setHeaderText("Error en la Inserción de Datos");
+            alert.setContentText("Los datos introducidos son erróneos o el artículo no existe. Por favor, revise la información ingresada.");
 
             alert.showAndWait();
         }
         codigo.clear();
     }
 
-*/
     public void cambiarMenuPrincipal (ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/menuArticulo.fxml"));
         root = loader.load();
+
         VistaGestionArticulo VistaGestionArticuloControlador = loader.getController();
         VistaGestionArticuloControlador.setControlador(controlador);
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

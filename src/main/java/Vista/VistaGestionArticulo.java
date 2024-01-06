@@ -21,8 +21,14 @@ public class VistaGestionArticulo {
         System.out.println("El controlador es" + controlador.toString());
     }
     public void cambiarMostrarArticulo(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/mostrarArticulo.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/mostrarArticulo.fxml"));
+        root = loader.load();
+
+        VistaMostrarArticulo vistaMostrarArticuloControlador = loader.getController();
+        vistaMostrarArticuloControlador.setControlador(controlador);
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -33,8 +39,10 @@ public class VistaGestionArticulo {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/anadirArticulo.fxml"));
         root = loader.load();
+
         VistaAnadirArticulo vistaAnadirArticuloControlador = loader.getController();
         vistaAnadirArticuloControlador.setControlador(controlador);
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -49,6 +57,7 @@ public class VistaGestionArticulo {
 
         VistaMenuPrincipal VistaMenuPrincipalControlador = loader.getController();
         VistaMenuPrincipalControlador.setControlador(controlador);
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
